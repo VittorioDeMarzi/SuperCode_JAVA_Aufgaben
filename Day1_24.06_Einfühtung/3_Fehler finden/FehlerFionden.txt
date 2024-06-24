@@ -1,0 +1,16 @@
+Hier haben sich Fehler eingeschlichen. Kannst du sie finden ?
+
+
+public class FehlerFinden {
+    public static void main(String[] args) {
+        System.out.println("Dieses Programm hat einen Fehler.");
+        System.out.prrintln("Kannst du ihn finden?"); // 2 r
+    }
+}
+
+
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println(Hello, World!); // keine Anführungszeichen "" 
+    }
+}

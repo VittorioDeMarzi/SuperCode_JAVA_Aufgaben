@@ -1,0 +1,38 @@
+Java Eigenschaften:
+* Java ist allgemein verfügbar
+* unterstützt viele moderne Abstraktionskonzepte
+* anfängerfreundlich
+* Java ist überall verbreitet
+* hat eine große und freundliche Community
+* general purpose
+* OOP - Java ist eine objektorientierte Sprache, was bedeutet, dass sie Objekte und Klassen zur Organisation des Codes verwendet.
+* plattformunabhängig
+* Sicherheit: Java bietet integrierte Sicherheitsmechanismen zum Schutz von Daten und Anwendungen.
+Das Gute ist aber: Die Programme, die wir schreiben, würden in vielen Programmiersprachen ähnlich aussehen
+Eine Programmiersprache ist nur ein Tool, um ein Problem zu lösen
+
+
+Was versteht man unter kompilieren?
+Kompilieren bedeutet, den Quellcode, der in einer Programmiersprache wie Java geschrieben wurde, in Maschinensprache oder Bytecode zu übersetzen, der von einem Computer ausgeführt werden kann. Im Falle von Java übersetzt der Compiler den Quellcode in Bytecode, der dann von der JVM ausgeführt wird.
+Compiler nimmt die .java Datei und macht daraus eine gleichlautende Datei, jedoch in der Computersprachen-Version .class
+
+
+Folgendes Szenario: du schreibst dein Programm, kompilierst es und lässt es laufen. Danach veränderst du dein Programm und möchtest es nach der Veränderung laufen lassen. Musst du es erneut kompilieren?
+Ja, nach der Änderung des Programms muss es erneut kompiliert werden, um den neuen Quellcode in aktualisierten Bytecode zu übersetzen. Erst nach der erneuten Kompilierung kannst du die geänderte Version des Programms ausführen.
+
+
+Welche Sachen muss man installieren, um mit Java programmieren zu können?
+Um mit Java programmieren zu können, musst du Folgendes installieren:
+* Java Development Kit (JDK): Beinhaltet den Compiler (javac), die JVM und andere Werkzeuge, die für die Entwicklung und Ausführung von Java-Anwendungen erforderlich sind.
+* Eine integrierte Entwicklungsumgebung (IDE)
+
+
+Was ist die JVM?
+Die JVM (Java Virtual Machine) ist eine virtuelle Maschine, die den Java-Bytecode ausführt. Sie ist für die Plattformunabhängigkeit von Java verantwortlich, da sie den kompilierten Bytecode auf jedem Gerät ausführen kann, das über eine kompatible JVM verfügt.
+
+Was ist das JDK?
+Das JDK (Java Development Kit) ist ein Software-Entwicklungskit, das für die Entwicklung von Java-Anwendungen erforderlich ist. Es umfasst den Compiler (javac), die JVM und eine Reihe von Standardbibliotheken, Werkzeugen und Dokumentationen, die beim Schreiben und Debuggen von Java-Code helfen.
+
+
+Wie würdest du einem Nicht-ITler ein Terminal erklären?
+Ein Terminal ist eine textbasierte Schnittstelle, die es ermöglicht, mit dem Computer über geschriebene Befehle zu interagieren. Es ist wie ein Fenster, in dem man Anweisungen eingeben kann, die der Computer direkt ausführt, ohne grafische Benutzeroberflächen zu verwenden. Zum Beispiel kann man mit dem Terminal durch Ordner navigieren, Programme starten oder Skripte ausführen. Es ist ein leistungsstarkes Werkzeug für fortgeschrittene und administrative Aufgaben auf dem System.
