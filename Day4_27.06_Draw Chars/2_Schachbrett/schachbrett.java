@@ -33,7 +33,16 @@ public class schachbrett {
             System.out.println("Invalid number entered. Please enter an even number and try again!");
         }
 
-
+        // Version 2
         
+        System.out.println("___________ Version 2____________");
+        for (int i = 0; i < größe; i++) {
+            for (int j = 0; j < größe; j++) {
+                char symbol = (j + i) % 2 == 0 ? '#' : ' ';
+                System.out.print(symbol);
+            }
+            System.out.println("");
+        }
+
     }
 }
