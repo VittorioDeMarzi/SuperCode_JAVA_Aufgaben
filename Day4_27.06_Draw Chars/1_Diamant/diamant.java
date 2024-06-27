@@ -6,7 +6,7 @@ public class diamant {
         int größe = Integer.parseInt(args[0]);
         
         if (größe %2 == 0) {
-            System.out.println("Invalid number entered. Please enter an odd number and try again!!!!");
+            System.out.println("Invalid number entered. Please enter an odd number and try again!");
         } else {
             int halfGröße = (int) (größe / 2);
             int offset = halfGröße;
