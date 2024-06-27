@@ -32,5 +32,8 @@ public class schachbrett {
         } else {
             System.out.println("Invalid number entered. Please enter an even number and try again!");
         }
+
+
+        
     }
 }
