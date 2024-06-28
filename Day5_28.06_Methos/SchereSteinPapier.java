@@ -5,7 +5,6 @@ public class SchereSteinPapier {
     public static void main(String[] args) {
         System.out.println("\nSCHERE STEIN SPIEL");
 
-        Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         boolean wantPlayMore = true;
         
@@ -15,10 +14,7 @@ public class SchereSteinPapier {
             if (wahl == 3) {
                 break; // schleife abbrechen "exit"
             }
-            printPlayerChoice(wahl);
-            int computerWahl = random.nextInt(3);
-            printComputerChoice(computerWahl);
-            checkWinning(wahl, computerWahl);
+            playSpiel(wahl);
         }
 
         System.out.println("Spiel wird beendet");
@@ -27,6 +23,19 @@ public class SchereSteinPapier {
 
     
     
+    private static void playSpiel(int wahl) {
+        Random random = new Random();
+
+        if (wahl < 0 || wahl > 3) {
+            System.out.println("Ungültige Spielereingabe\n");
+        } else {
+            printPlayerChoice(wahl);
+            int computerWahl = random.nextInt(3);
+            printComputerChoice(computerWahl);
+            checkWinning(wahl, computerWahl);            
+        }
+    }
+
     private static void checkWinning(int wahl, int computerWahl) {
         if (wahl == 0) {
             switch (computerWahl) {
@@ -62,7 +71,7 @@ public class SchereSteinPapier {
             case 0 -> System.out.println("Deine Wahl: Schere");
             case 1 -> System.out.println("Deine Wahl: Stein");
             case 2 -> System.out.println("Deine Wahl: Papier");
-            default -> System.out.println("Ungültige Spielereingabe");
+            // default -> System.out.println("Ungültige Spielereingabe");
         }
     }
 }
