@@ -1,0 +1,39 @@
+### Ziel:
+
+Entwickle ein einfaches Konsolen-basiertes Spiel in Java, das "Schere-Stein-Papier" simuliert. Der Spieler tritt gegen den Computer an, der zufällig eine Wahl trifft. Das Spiel läuft in einer Schleife, bis der Spieler sich entscheidet, das Spiel zu beenden.
+
+```bash
+java SchereSteinPapier
+Wähle: 0 = Schere, 1 = Stein, 2 = Papier3 = Beenden
+0
+Deine Wahl: Schere
+Wahl des Computers: Stein
+Der Computer hat gewonnen
+
+Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden
+5       
+Ungültige Spielereingabe
+
+Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden
+3
+Das spiel wurde beendet.
+
+```
+
+### Anforderungen:
+
+1. **Benutzereingabe**:
+    - Der Benutzer soll die Wahl zwischen Schere, Stein und Papier treffen können.
+    - Zusätzlich soll der Benutzer die Möglichkeit haben, das Spiel zu beenden.
+2. **Computerwahl**:
+    - Der Computer trifft seine Wahl zufällig.
+3. **Spielregeln**:
+    - Schere schlägt Papier
+    - Papier schlägt Stein
+    - Stein schlägt Schere
+    - Bei gleicher Wahl von Spieler und Computer endet die Runde unentschieden.
+4. **Spielablauf**:
+    - Das Programm fordert den Benutzer auf, eine Wahl zu treffen (0 für Schere, 1 für Stein, 2 für Papier, 3 zum Beenden).
+    - Die Wahl des Benutzers und die zufällige Wahl des Computers werden angezeigt.
+    - Das Ergebnis der Runde wird basierend auf den Spielregeln ermittelt und angezeigt.
+    - Das Spiel läuft in einer Schleife, bis der Benutzer sich entscheidet, das Spiel zu beenden (Eingabe 3).
