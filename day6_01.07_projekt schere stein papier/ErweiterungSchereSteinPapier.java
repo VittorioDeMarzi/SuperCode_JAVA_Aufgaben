@@ -23,7 +23,8 @@ public class ErweiterungSchereSteinPapier {
 
             if (userInput == BEENDEN) {
                 System.out.println("Spiel wird beendet");
-                printEndeStand(userPoint, computerPoint, unentschieden);
+            System.out.println("_ENDESTAND_");
+                printCurrentStand(userPoint, computerPoint, unentschieden);
                 break; // schleife abbrechen "exit"
             }
             boolean inputOutOfBound = userInput < 0 || userInput > 3;
@@ -34,13 +35,13 @@ public class ErweiterungSchereSteinPapier {
             int computerChoice = (int) (Math.random() * 3);
             printChoices(userInput, computerChoice);
             checkWinner(userInput, computerChoice);
+            printCurrentStand(userPoint, computerPoint, unentschieden);
         }       
         scanner.close();
     }
 
-    private static void printEndeStand(int userPoint, int computerPoin, int unentschieden) {
-        System.out.println("_ENDESTAND_");
-        System.out.printf("Spieler: %s; Computer: %s; unentschieden: %s%n", userPoint, computerPoint, unentschieden);
+    private static void printCurrentStand(int userPoint, int computerPoint, int unentschieden) {
+        System.out.printf("Spieler: %s; Computer: %s; unentschieden: %s%n%n", userPoint, computerPoint, unentschieden);
     }
 
     private static void checkWinner (int userInput, int computerChoice) {
@@ -48,9 +49,7 @@ public class ErweiterungSchereSteinPapier {
             System.out.println("Das Spiel ist unentschieden.\n");
             unentschieden += 1;
         }
-        else if  (userInput == STEIN && computerChoice == SCHERE ||
-                    userInput == PAPIER && computerChoice == STEIN ||
-                    userInput == SCHERE && computerChoice == PAPIER) {
+        else if  (userInput == STEIN && computerChoice == SCHERE || userInput == PAPIER && computerChoice == STEIN || userInput == SCHERE && computerChoice == PAPIER) {
             System.out.println("Du hast gewonnen.\n");
             userPoint += 1;
         } else {

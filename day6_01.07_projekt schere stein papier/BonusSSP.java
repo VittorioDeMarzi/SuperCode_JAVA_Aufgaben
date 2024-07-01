@@ -27,7 +27,8 @@ public class BonusSSP {
 
             if (userInput == BEENDEN) {
                 System.out.println("Spiel wird beendet");
-                printEndeStand(userPoint, computerPoint, unentschiedenPoints);
+                System.out.println("_ENDESTAND_");
+                printCurrentStand(userPoint, computerPoint, unentschiedenPoints);
                 break; // schleife abbrechen "exit"
             }
             boolean inputOutOfBound = userInput < 0 || userInput > 3;
@@ -46,17 +47,17 @@ public class BonusSSP {
             }
             if (bonusComputer == 3) {
                 System.out.println("Computer hat dreimal hintereinander gewonnen. 1 Punkt bonus erhalten");
-                userPoint += 1;
-                bonusUser = 0;
-            }          
+                computerPoint += 1;
+                bonusComputer = 0;
+            }
+            printCurrentStand(userPoint, computerPoint, unentschiedenPoints);          
 
         }       
         scanner.close();
     }
 
-    private static void printEndeStand(int userPoint, int computerPoint, int unentschieden) {
-        System.out.println("_ENDESTAND_");
-        System.out.printf("Spieler: %s; Computer: %s; unentschieden: %s%n", userPoint, computerPoint, unentschiedenPoints);
+    private static void printCurrentStand(int userPoint, int computerPoint, int unentschiedenPoints) {
+        System.out.printf("Spieler: %s; Computer: %s; unentschieden: %s%n%n", userPoint, computerPoint, unentschiedenPoints);
     }
 
     private static void checkWinner (int userInput, int computerChoice) {
@@ -66,9 +67,7 @@ public class BonusSSP {
             bonusUser = 0;
             bonusComputer = 0;
         }
-        else if  (userInput == STEIN && computerChoice == SCHERE ||
-                    userInput == PAPIER && computerChoice == STEIN ||
-                    userInput == SCHERE && computerChoice == PAPIER) {
+        else if  (userInput == STEIN && computerChoice == SCHERE || userInput == PAPIER && computerChoice == STEIN || userInput == SCHERE && computerChoice == PAPIER) {
             System.out.println("Du hast gewonnen.\n");
             userPoint += 1;
             bonusUser += 1;
