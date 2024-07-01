@@ -6,9 +6,8 @@ public class RevisionSchereSteinPapier {
         System.out.println("\nSCHERE STEIN SPIEL");
 
         Scanner scanner = new Scanner(System.in);
-        boolean wantPlayMore = true;
-        
-        while (wantPlayMore) {
+       
+        while (true) {
             System.out.println("Wähle: 0 = Schere, 1 = Stein, 2 = Papier, 3 = Beenden \n");
             int wahl = scanner.nextInt();
             if (wahl == 3) {
@@ -35,14 +34,13 @@ public class RevisionSchereSteinPapier {
     }
 
     private static void checkWinning(int wahl, int computerWahl) {
-        if (wahl == computerWahl) {
-            System.out.println("Das Spiel ist unentschieden.\n");
-        
-        } else if ((wahl == 1 && computerWahl == 0) || (wahl == 2 && computerWahl == 1) || (wahl == 0 && computerWahl == 2)) {
+        if (wahl == computerWahl) System.out.println("Das Spiel ist unentschieden.\n");
+        else if  (wahl == 1 && computerWahl == 0 ||
+                    wahl == 2 && computerWahl == 1 ||
+                    wahl == 0 && computerWahl == 2) {
             System.out.println("Du hast gewonnen.\n");
-        } else {
-            System.out.println("Der Computer hat gewonnen.\n");
-        }
+        } else System.out.println("Der Computer hat gewonnen.\n");
+        
     }
 
     private static void printComputerChoice(int computerWahl) {
