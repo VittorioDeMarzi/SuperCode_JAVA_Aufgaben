@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class SchereSteinPapier {
+public class RevisionSchereSteinPapier {
     public static void main(String[] args) {
         System.out.println("\nSCHERE STEIN SPIEL");
 
@@ -35,24 +35,13 @@ public class SchereSteinPapier {
     }
 
     private static void checkWinning(int wahl, int computerWahl) {
-        if (wahl == 0) {
-            switch (computerWahl) {
-                case 0 -> System.out.println("Das Spiel ist unentschieden.\n");
-                case 1 -> System.out.println("Der Computer hat gewonnen.\n");
-                case 2 -> System.out.println("Du hast gewonnen.\n");
-            }
-        } else if (wahl == 1) {
-            switch (computerWahl) {
-                case 0 -> System.out.println("Du hast gewonnen.\n");
-                case 1 -> System.out.println("Das Spiel ist unentschieden.\n");
-                case 2 -> System.out.println("Der Computer hat gewonnen.\n");
-            }
+        if (wahl == computerWahl) {
+            System.out.println("Das Spiel ist unentschieden.\n");
+        
+        } else if ((wahl == 1 && computerWahl == 0) || (wahl == 2 && computerWahl == 1) || (wahl == 0 && computerWahl == 2)) {
+            System.out.println("Du hast gewonnen.\n");
         } else {
-            switch (computerWahl) {
-                case 0 -> System.out.println("Der Computer hat gewonnen.\n");
-                case 1 -> System.out.println("Du hast gewonnen.\n");
-                case 2 -> System.out.println("Das Spiel ist unentschieden.\n");
-            }
+            System.out.println("Der Computer hat gewonnen.\n");
         }
     }
 
