@@ -2,19 +2,27 @@ public class Palindrom {
     
     public static boolean checkPalindrom(String input) {
         String inputLower = input.toLowerCase();
-        String stringToCheck = "";
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) != ' ') {
-                stringToCheck += inputLower.charAt(i);
+        String stringToCheck = removeSpaces(inputLower);
+        String reverse = reverstString(stringToCheck);
+        return stringToCheck.equals(reverse);   
+    }
+
+    private static String removeSpaces(String str) {
+        String output = "";
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) != ' ') {
+                output += str.charAt(i);
             }
         }
-        
+        return output;
+    }
+
+    private static String reverstString(String str) {
         String reverse = "";
-        for (int i = stringToCheck.length() - 1; i >= 0; i--) {
-            reverse += stringToCheck.charAt(i);
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reverse += str.charAt(i);
         }
-        return stringToCheck.equals(reverse);
-        
+        return reverse;
     }
 
     public static void main(String[]args) {
