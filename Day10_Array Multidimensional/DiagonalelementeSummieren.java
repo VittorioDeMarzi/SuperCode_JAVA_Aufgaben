@@ -2,6 +2,8 @@ public class DiagonalelementeSummieren {
     public static void main(String[] args) {
         int numrows = 3;
         int[][] matrix = matrixAusgabe(numrows);
+        printMatrix(matrix);
+
         int sumOfDiagonal = sumOfMainDiagonal(matrix);
         System.out.println("Summe der Hauptdiagonale: " + sumOfDiagonal);
 
@@ -29,5 +31,15 @@ public class DiagonalelementeSummieren {
             }
         }
         return matrix;
+    }
+
+    private static void printMatrix(int[][] matrix) {
+        int length = matrix.length;
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
