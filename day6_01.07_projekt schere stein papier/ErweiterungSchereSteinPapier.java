@@ -65,6 +65,7 @@ public class ErweiterungSchereSteinPapier {
 
     private static String choiceToString(int input) {
         String[] choices = { "Schere", "Stein", "Papier" };
+        char
         return choices[input];
     }
 }
