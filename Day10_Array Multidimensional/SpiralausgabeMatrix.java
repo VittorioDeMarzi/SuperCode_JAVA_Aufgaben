@@ -1,7 +1,7 @@
 public class SpiralausgabeMatrix {
     public static void main(String[] args) {
         int numrows = 3;
-        int numCol = 6;
+        int numCol = 4;
         int[][] matrix = matrixAusgabe(numrows, numCol);
         printMatrix(matrix);
         System.out.println("___________________");
@@ -28,8 +28,10 @@ public class SpiralausgabeMatrix {
                 System.out.print(matrix[i][rightCol] + " ");
             }
             rightCol--;
-            for (int i = rightCol; i >= leftCol; i--) {
-                System.out.print(matrix[bottomRow][i] + " ");
+            if (topRow<bottomRow) {
+                for (int i = rightCol; i >= leftCol; i--) {
+                    System.out.print(matrix[bottomRow][i] + " ");
+                }
             }
             bottomRow--;
             for (int i = bottomRow; i >= topRow; i--) {
