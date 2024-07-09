@@ -10,6 +10,10 @@ public class BankAccount {
     private double balance;
     private ArrayList<String> transactionHistory = new ArrayList<>();
     private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
+    
+    private String TRANSFER = "Transfer";
+    private String WITHDRAW = "Withdraw";
+    private String DEPOSIT = "Deposit";
 
     public BankAccount(String accountHolder, String accountNumber, double balance) {
         this.accountHolder = accountHolder;
@@ -52,24 +56,32 @@ public class BankAccount {
         
     public void deposit(double amount) {
         if (amount > 0) {
-            String transactionTime = getCurrentDateTime();
             this.balance += amount;
-            String transaction = String.format("Deposit - %s - Amount: %s%n", transactionTime, nf.format(amount));
-            this.transactionHistory.add(transaction);
+            insertTransactionInHistory(DEPOSIT, amount);
         } else
             System.out.println("Incorrect amount. The account balance remains unchanged.");
     }
 
-     public void withdraw(double amount) {
+    public void withdraw(double amount) {
+        if (amount < 0)
+            System.out.println("Incorrect amount. The account balance remains unchanged.");
+        else if (amount > this.balance)
+            System.out.println("The account does not have sufficient funds.");
+        else {
+            this.balance -= amount;
+            insertTransactionInHistory(WITHDRAW, amount);
+        }
+    }
+    
+    public void transfer(BankAccount recipient, double amount) {
         if (amount < 0)
         System.out.println("Incorrect amount. The account balance remains unchanged.");
         else if (amount > this.balance)
         System.out.println("The account does not have sufficient funds.");
-    else {
-            String transactionTime = getCurrentDateTime();
+        else {
             this.balance -= amount;
-            String transaction = String.format("Withdraw - %s - Amount: %s%n", transactionTime, nf.format(amount));
-            this.transactionHistory.add(transaction);
+            insertTransferInHistory(recipient, amount);
+            recipient.balance += amount;
         }
     }
     
@@ -79,6 +91,19 @@ public class BankAccount {
         return myDateObj.format(formatter);
     }
 
+    private void insertTransactionInHistory(String kindOfTransaction, double amount) {
+        String transactionTime = getCurrentDateTime();
+        String transaction = String.format("%s - %s - Amount: %s - New Balance: %s%n", kindOfTransaction,
+                transactionTime, nf.format(amount), nf.format(this.balance));
+        this.transactionHistory.add(transaction);
+    }
+    
+    private void insertTransferInHistory(BankAccount recipient, double amount) {
+        String transactionTime = getCurrentDateTime();
+        String transaction = String.format("Transfer - %s - Recipient: %s - Amount: %s - New Balance: %s%n", transactionTime, recipient.accountHolder, nf.format(amount), nf.format(this.balance));
+        this.transactionHistory.add(transaction);
+    }
+
     public void printAccountInformation() {
         System.out.println(this.toString());
     }
@@ -86,12 +111,12 @@ public class BankAccount {
     @Override
     public String toString() {
         return "Account holder: " + this.accountHolder +
-        " Account number: "+ this.accountNumber + 
-        " Balance: " + nf.format(this.balance);
+        ", Account number: "+ this.accountNumber + 
+        ", Balance: " + nf.format(this.balance);
     }
 
     public void printHistory() {
-        System.out.println("TRANSACTION HISTORY");
+        System.out.printf("TRANSACTION HISTORY of %s%n", this.accountHolder);
         for (String transaction : transactionHistory)
             System.out.println(transaction);
     }
