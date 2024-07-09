@@ -5,8 +5,22 @@ public class Main {
         account1.printAccountInformation();
         account1.deposit(23000);
         account1.printAccountInformation();
+        account1.deposit(-23000);
+        account1.printAccountInformation();
+        account1.withdraw(35000);
+        account1.withdraw(35000);
+        account1.withdraw(35000);
         account1.withdraw(35000);
         account1.printAccountInformation();
         account1.withdraw(300000);
+        account1.printAccountInformation();
+        account1.deposit(-23000);
+        account1.printAccountInformation();
+        account1.withdraw(35000);
+        account1.printAccountInformation();
+        account1.withdraw(300000);
+        account1.printAccountInformation();
+
+        account1.printHistory();
     }
 }
