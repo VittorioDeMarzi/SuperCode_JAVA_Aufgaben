@@ -8,6 +8,6 @@ public class Main {
         account1.transfer(account2, 27900);
         account1.printHistory();
         account2.printAccountInformation();
-        
+        account2.printHistory();
     }
 }

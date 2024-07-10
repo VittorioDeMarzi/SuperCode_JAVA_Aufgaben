@@ -11,15 +11,13 @@ public class BankAccount {
     private ArrayList<String> transactionHistory = new ArrayList<>();
     private NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.US);
     
-    private String TRANSFER = "Transfer";
-    private String WITHDRAW = "Withdraw";
-    private String DEPOSIT = "Deposit";
+    private final String WITHDRAW = "Withdraw";
+    private final String DEPOSIT = "Deposit";
 
     public BankAccount(String accountHolder, String accountNumber, double balance) {
         this.accountHolder = accountHolder;
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.transactionHistory = transactionHistory;
     }
 
     public String getAccountHolder() {
@@ -46,11 +44,11 @@ public class BankAccount {
         this.balance = balance;
     }
     
-        public ArrayList<String> getTransactionHistory() {
-            return transactionHistory;
-        }
-    
-        public void setTransactionHistory(ArrayList<String> transactionHistory) {
+    public ArrayList<String> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void setTransactionHistory(ArrayList<String> transactionHistory) {
             this.transactionHistory = transactionHistory;
         }
         
@@ -82,6 +80,7 @@ public class BankAccount {
             this.balance -= amount;
             insertTransferInHistory(recipient, amount);
             recipient.balance += amount;
+            insertReceiptInHistory(recipient, amount);
         }
     }
     
@@ -102,6 +101,12 @@ public class BankAccount {
         String transactionTime = getCurrentDateTime();
         String transaction = String.format("Transfer - %s - Recipient: %s - Amount: %s - New Balance: %s%n", transactionTime, recipient.accountHolder, nf.format(amount), nf.format(this.balance));
         this.transactionHistory.add(transaction);
+    }
+
+    private void insertReceiptInHistory(BankAccount recipient, double amount) {
+        String transactionTime = getCurrentDateTime();
+        String transaction = String.format("Receipt - %s - Sender: %s - Amount: %s - New Balance: %s%n", transactionTime, this.accountHolder, nf.format(amount), nf.format(recipient.balance));
+        recipient.transactionHistory.add(transaction);
     }
 
     public void printAccountInformation() {
