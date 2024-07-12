@@ -30,26 +30,4 @@ public class Person {
         this.bookingHistoy.add(reservation);
     }
 
-    // public Boot mostWantedFromCustumerX() {
-        
-    //     int counter = 0;
-    //     int mostWantedBootID = 0;
-    //     ArrayList<Integer> bootsBookedIDs = new ArrayList<>();
-    //     for (Reservation reservation : bookingHistoy) 
-    //         bootsBookedIDs.add(reservation.getBootID());
-    //     bootsBookedIDs.sort(null);
-    //     int mostWantedBootID = findMostFrequent(bootsBookedIDs);
-    // }
-
-    // private int findMostFrequent(ArrayList<Integer> bootsBookedIDs) {
-    //     int currentInt = -1;
-    //     int index = 0;
-    //     int mostFrequent[][] = 0;
-    //     for (int i = 0; i < bootsBookedIDs.size(); i++) {
-    //         if (currentInt == bootsBookedIDs.get(i)) {
-                
-    //         }
-    //     }
-    // }
-
 }

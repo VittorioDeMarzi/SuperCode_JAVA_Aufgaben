@@ -4,8 +4,9 @@ import java.time.format.DateTimeFormatter;
 public class Reservation {
     private int bootID;
     private Person person;
-    LocalDateTime from;
+    private LocalDateTime from;
     private LocalDateTime to;
+    private double costOfReservation;
 
     public Reservation(int ID, Person person, LocalDateTime from, LocalDateTime to) {
         this.bootID = ID;
@@ -28,14 +29,11 @@ public class Reservation {
     public int getBootID() {
         return bootID;
     }
-    
+
     @Override
     public String toString() {
         DateTimeFormatter f = DateTimeFormatter.ofPattern("EEE dd.MM.yyyy HH:mm");
-        return "From: " + from.format(f) + " to: " + to.format(f) + " - Boot: " + this.bootID + " Customer: " + person.getName() + ", Licensed: " + person.hasLicence() + ".";
+        return "From: " + from.format(f) + " to: " + to.format(f) + " Customer: "
+                + person.getName() + ", Licensed: " + person.hasLicence() + ".";
     }
-
-
-    
-    
 }

@@ -1,13 +1,7 @@
 import java.time.LocalDateTime;
-import java.time.chrono.ThaiBuddhistDate;
 import java.util.ArrayList;
 
 public class Boot {
-    // länge, breite, tiefgang, freiboard
-    // hasMotor: segelboot (masthöhe) vs. motorboot
-    // personCount
-    // isLicenceRequired 
-    // availability: Reservation[] from, to, person
     private int ID;
     private String type; // Segelboot | Motorboot
     private int personCount;
@@ -21,7 +15,7 @@ public class Boot {
         this.setPersonCount(personCount);
         this.setIsLicenceRequired(isLicenceRequired);
         this.setPricePerHour(pricePerHour);
-        this.reservations = new ArrayList<Reservation>();
+        this.reservations = new ArrayList<>();
     }
 
     private void setID(int ID) {
@@ -100,9 +94,12 @@ public class Boot {
     }
 
     public void printReservations() {
-        
-        System.out.println("Reservation of: " + this.type);
-        for (Reservation booking : reservations)
-            System.out.println("\t" + booking.toString());
+        System.out.printf("Reservation boat %s - Type: %s%n", this.ID, this.type);
+        if (!reservations.isEmpty()) {
+            for (Reservation booking : reservations) 
+                System.out.println("\t" + booking.toString());
+        } else
+            System.out.println("No reservations yet");
+
     }
 }

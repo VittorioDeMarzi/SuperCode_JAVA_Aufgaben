@@ -1,13 +1,20 @@
+import java.text.NumberFormat;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Bootsverleih {
+    private String name;
     private ArrayList<Boot> boote;
     private ArrayList<Person> kunden;
-    // private double umsatz;
+    private double revenue;
 
-    public Bootsverleih() {
-        boote = new ArrayList<>();
-        kunden = new ArrayList<>();
+    public Bootsverleih(String name) {
+        this.name = name;
+        this.boote = new ArrayList<>();
+        this.kunden = new ArrayList<>();
+        this.revenue = 0;
     }
 
     public void addBoot(Boot boot) {
@@ -17,6 +24,11 @@ public class Bootsverleih {
     public void addKunden(Person person) {
         kunden.add(person);
     }
+
+    public String getName() {
+        return name;
+    }
+
 
     // the customer with the most reservation (count)
     public Person topCustomer() {
@@ -42,6 +54,14 @@ public class Bootsverleih {
             }
         }
         return mostWanted;
+    }
+    
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void increaseRevenue(double priceReservation) { // revenue will increase by timeReservation * pricePerHour;
+        this.revenue += revenue;
     }
 
     public int mostWantedFromCustumerX(Person person) {
@@ -74,6 +94,35 @@ public class Bootsverleih {
                 lessWanted = boot;
             }
         }
-        System.out.println("Less boooked boat is ");
+        return lessWanted;
     }
+
+    public void addReservation(Boot boot, LocalDateTime starTime, LocalDateTime endTime, Person andrea) {
+        boot.addReservation(starTime, endTime, andrea);
+        increaseRevenue(boot, starTime, endTime);
+    }
+
+    public void increaseRevenue(Boot boot, LocalDateTime starTime, LocalDateTime endTime) {
+        Duration durationReservation = Duration.between(starTime, endTime);
+        double costOfReservation = durationReservation.toMinutes() * (boot.getPicePerHour() / 60);
+        this.revenue += costOfReservation;
+    }
+
+    public void printReservations(Boot boot) {
+        // System.out.printf("Reservation boat %s:%n", boot.getID());
+        boot.printReservations();
+    }
+
+    public void printReservations() {
+        for (Boot boot : boote)
+            this.printReservations(boot);
+    }
+
+    public void printRevenue() {
+        
+        NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.GERMANY);
+        System.out.printf("%s - Revenue: %s.%n", this.name, nf.format(this.revenue));
+    }
+
+
 }
