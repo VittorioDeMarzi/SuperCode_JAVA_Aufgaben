@@ -74,6 +74,6 @@ public class Bootsverleih {
                 lessWanted = boot;
             }
         }
-        return lessWanted;
+        System.out.println("Less boooked boat is ");
     }
 }
