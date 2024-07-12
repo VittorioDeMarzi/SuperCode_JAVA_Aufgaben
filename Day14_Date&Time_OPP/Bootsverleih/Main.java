@@ -57,7 +57,7 @@ public class Main {
         spreeRental.addReservation(boot2, pastStart, pastTo, vittorio);
 
         Boot boatWithHighestRevenueInLastNDays = spreeRental.boatWithHighestRevenue(lastNDays);
-        System.out.printf("The boat with the highest income is ID: %s with a income of %s%n", boatWithHighestRevenueInLastNDays.getID(), boatWithHighestRevenueInLastNDays.incomeBootLastNdays(lastNDays));
+        System.out.printf("The boat with the highest income is ID: %s with a income of € %s.%n", boatWithHighestRevenueInLastNDays.getID(), boatWithHighestRevenueInLastNDays.incomeBootLastNdays(lastNDays));
         
     }
 }
