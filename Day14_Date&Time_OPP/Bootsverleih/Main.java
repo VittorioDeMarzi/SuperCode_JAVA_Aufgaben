@@ -50,6 +50,14 @@ public class Main {
         Boot lessWanted = spreeRental.lessWanted();
         System.out.printf("The less wanted Boot in %s is ID: %s.%n", spreeRental.getName(), lessWanted.getID());
         
+        int lastNDays = 10;
 
+        LocalDateTime pastStart = LocalDateTime.of(2024, Month.JULY, 10, 11, 30);
+        LocalDateTime pastTo = LocalDateTime.of(2024, Month.JULY, 11, 23, 0);
+        spreeRental.addReservation(boot2, pastStart, pastTo, vittorio);
+
+        Boot boatWithHighestRevenueInLastNDays = spreeRental.boatWithHighestRevenue(lastNDays);
+        System.out.printf("The boat with the highest income is ID: %s with a income of %s%n", boatWithHighestRevenueInLastNDays.getID(), boatWithHighestRevenueInLastNDays.incomeBootLastNdays(lastNDays));
+        
     }
 }

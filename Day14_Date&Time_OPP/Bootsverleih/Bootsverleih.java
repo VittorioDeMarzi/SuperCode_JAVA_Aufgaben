@@ -29,7 +29,6 @@ public class Bootsverleih {
         return name;
     }
 
-
     // the customer with the most reservation (count)
     public Person topCustomer() {
         if (kunden.isEmpty())
@@ -109,7 +108,6 @@ public class Bootsverleih {
     }
 
     public void printReservations(Boot boot) {
-        // System.out.printf("Reservation boat %s:%n", boot.getID());
         boot.printReservations();
     }
 
@@ -119,9 +117,23 @@ public class Bootsverleih {
     }
 
     public void printRevenue() {
-        
         NumberFormat nf = NumberFormat.getCurrencyInstance(Locale.GERMANY);
         System.out.printf("%s - Revenue: %s.%n", this.name, nf.format(this.revenue));
+    }
+
+    public Boot boatWithHighestRevenue(int lastNDays) {
+        if (boote.isEmpty())
+            throw new IllegalStateException("No boots listed yet");
+        double maxIncome = 0;
+        Boot bootWithMaxIncome = boote.get(0);
+        for (Boot boot : boote) {
+            double incomeBootLastNdays = boot.incomeBootLastNdays(lastNDays);
+            if (incomeBootLastNdays > maxIncome) {
+                bootWithMaxIncome = boot;
+            }
+        }
+        return bootWithMaxIncome;
+
     }
 
 

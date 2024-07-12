@@ -100,6 +100,21 @@ public class Boot {
                 System.out.println("\t" + booking.toString());
         } else
             System.out.println("No reservations yet");
+    }
 
+    public double incomeBootLastNdays(int lastNDays) {
+        double totalIncomeBoot = 0;
+        for (Reservation booking : reservations) {
+            if (booking.isInTheLastNDays(lastNDays)) {
+                double costOfReservation = calculateCostOfReservation(booking);
+                totalIncomeBoot += costOfReservation;
+            }
+        }
+        return totalIncomeBoot;
+    }
+
+    private double calculateCostOfReservation(Reservation booking) {
+        Double durationReservationInMinuts = (double)booking.getDuration().toMinutes();
+        return durationReservationInMinuts * (this.pricePerHour / 60);
     }
 }
