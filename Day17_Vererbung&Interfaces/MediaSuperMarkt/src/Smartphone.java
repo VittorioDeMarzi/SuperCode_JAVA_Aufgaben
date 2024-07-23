@@ -23,4 +23,5 @@ public class Smartphone extends Geraet implements Internetfaehig, Bluetoothfaehi
                 ", Betriebsystem= " + betriebsystem;
     }
 
+
 }

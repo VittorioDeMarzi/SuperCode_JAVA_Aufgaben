@@ -15,9 +15,6 @@ public class Main {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_BLACK = "\u001B[30m";
 
-
-
-
     private static int remainingAttempts = 6;
     private static ArrayList<Character> guessedLetters = new ArrayList<>();
     private static int missingLettersCounter;
@@ -54,9 +51,9 @@ public class Main {
                 break;
             }
 
-            // boolean acceptableInput = userInput.length()==1 && ((Character.isLetter(userInput)) || (userInput.indexOf(0) >= 97 && userInput.indexOf(0) <= 122));
-            boolean acceptableInput = Character.isLetter(userInput.charAt(0)) && userInput.length()==1;
-            if (!acceptableInput) {
+            // boolean InputIsALetter = userInput.length()==1 && ((Character.isLetter(userInput)) || (userInput.indexOf(0) >= 97 && userInput.indexOf(0) <= 122));
+            boolean InputIsALetter = Character.isLetter(userInput.charAt(0)) && userInput.length()==1;
+            if (!InputIsALetter) {
                 System.out.println(ANSI_RED + "Invalid player input" + ANSI_RESET);
                 continue;
             }
@@ -84,6 +81,9 @@ public class Main {
             }
         }
         scanner.close();
+    }
+
+    private static void isInputAccetable(String userInput) {
     }
 
     private static int calculateNumberOfLetters(String wordToGuess) {
