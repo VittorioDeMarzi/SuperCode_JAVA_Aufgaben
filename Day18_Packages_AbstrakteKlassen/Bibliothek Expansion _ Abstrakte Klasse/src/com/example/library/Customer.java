@@ -64,7 +64,7 @@ public class Customer {
 
     public void read(EBook book) {
         if (!borrowedBooks.contains(book)) {
-            System.out.println(book.toString() + " has to be borrowed first. Reading not possible.");
+            System.out.println("******************" + book.toString() + " has to be borrowed first. Reading not possible******************");
             return;
         }
         book.read();

@@ -15,8 +15,6 @@ public abstract class Book {
         this.year = year;
     }
 
-    public abstract void read();
-
     public String getTitle() {
         return title;
     }
@@ -51,8 +49,8 @@ public abstract class Book {
 
     @Override
     public String toString() {
-        if (this instanceof PrintedBook) return "\tPaperbook_ " + author + ", " + title + ", (" + year + ") - isbn: " + isbn;
-        else return "\teBook_ " + author + ", " + title + ", (" + year + ") - isbn: " + isbn;
+        if (this instanceof PrintedBook) return "Paperbook_ " + author + ", " + title + ", (" + year + ") - isbn: " + isbn;
+        else return "eBook_ " + author + ", " + title + ", (" + year + ") - isbn: " + isbn;
     }
 
     @Override

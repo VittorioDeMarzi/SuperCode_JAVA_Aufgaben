@@ -16,6 +16,8 @@ public class PrintedBook extends Book implements Readable {
     @Override
     public void read() {
         System.out.println("Nothing is better than the smell of a real book.");
+        System.out.println("Get ready to read " + this.toString());
+
         System.out.println();
         System.out.println(" ____________________________________________");
         System.out.println("|                                            |");

@@ -19,6 +19,7 @@ public class Main {
         PrintedBook printedBook3 = new PrintedBook("1984", "George Orwell", "9780451524935", 1949, 280);
         PrintedBook printedBook4 = new PrintedBook("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 1925, 350);
         PrintedBook printedBook5 = new PrintedBook("Moby-Dick", "Herman Melville", "9781503280786", 1851, 400);
+        System.out.println();
 
         library.addBook(eBook1);
         library.addBook(eBook2);
@@ -29,6 +30,10 @@ public class Main {
         library.addBook(printedBook2);
         library.addBook(printedBook3);
         library.addBook(printedBook4);
+        library.addBook(printedBook4);
+        library.addBook(printedBook4);
+        library.addBook(printedBook4);
+        System.out.println();
 
         library.showBooks();
 

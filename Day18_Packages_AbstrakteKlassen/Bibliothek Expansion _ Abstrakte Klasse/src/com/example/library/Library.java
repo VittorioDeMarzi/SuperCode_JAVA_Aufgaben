@@ -22,7 +22,7 @@ public class Library {
 
     public void addBook(Book book) {
         if (books.contains(book)) {
-            System.out.println("__The following book was already in the list. Not added to the library__");
+            System.out.println("***************__The following book was already in the list. Not added to the library__***************");
             printBookDetails(book);
             return;
         } else {

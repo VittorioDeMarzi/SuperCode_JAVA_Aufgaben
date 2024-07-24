@@ -16,7 +16,7 @@ public class EBook extends Book implements Readable {
     @Override
     public void read() {
         System.out.println("Kindle Papierwhite 2021 is switching on......");
-        System.out.println();
+        System.out.println("..." + this.toString() + " will be opened...");
         System.out.println();
         System.out.println(" *********************************************");
         System.out.println("*                                            *");
