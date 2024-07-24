@@ -9,7 +9,7 @@ public class Loan {
         }
 
         if (!library.books.contains(book)) {
-            System.out.println("********Book is not available******");
+            System.out.println("******** " + book.toString() + " is not available in the library!******");
             return;
         } else {
             library.books.remove(book);

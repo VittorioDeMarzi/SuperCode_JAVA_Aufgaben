@@ -62,4 +62,11 @@ public class Customer {
         return Objects.hash(firstName, lastName, address);
     }
 
+    public void read(EBook book) {
+        if (!borrowedBooks.contains(book)) {
+            System.out.println(book.toString() + " has to be borrowed first. Reading not possible.");
+            return;
+        }
+        book.read();
+    }
 }

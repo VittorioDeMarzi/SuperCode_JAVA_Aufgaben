@@ -2,7 +2,7 @@ package com.example.library;
 
 import java.util.Objects;
 
-public class Book {
+public abstract class Book {
     private String title;
     protected String author;
     String isbn;
@@ -14,6 +14,8 @@ public class Book {
         this.isbn = isbn;
         this.year = year;
     }
+
+    public abstract void read();
 
     public String getTitle() {
         return title;

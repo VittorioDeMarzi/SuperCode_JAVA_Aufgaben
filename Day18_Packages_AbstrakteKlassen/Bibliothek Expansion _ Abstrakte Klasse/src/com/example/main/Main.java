@@ -29,7 +29,6 @@ public class Main {
         library.addBook(printedBook2);
         library.addBook(printedBook3);
         library.addBook(printedBook4);
-        library.addBook(printedBook5);
 
         library.showBooks();
 
@@ -39,15 +38,23 @@ public class Main {
         library.findBooksByAuthor("Brown");
         System.out.println();
 
-        eBook3.read();
-        System.out.println();
-        printedBook4.read();
-        System.out.println();
+//        eBook3.read();
+//        System.out.println();
+//        printedBook4.read();
+//        System.out.println();
 
         loan.loanABookTo(library, eBook1, vittorio);
         library.addKunde(vittorio);
         System.out.println();
+        loan.loanABookTo(library, printedBook5, vittorio);
+        System.out.println();
+        loan.loanABookTo(library, printedBook4, vittorio);
+        System.out.println();
         loan.loanABookTo(library, eBook1, vittorio);
+        System.out.println();
+        vittorio.read(eBook2);
+        System.out.println();
+        vittorio.read(eBook1);
 
     }
 }
