@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Main2 {
     public static void main(String[] args) {
-        String str = "abcda";
+        String str = "qwertzqasdfcm";
         longestSubstring(str);
     }
 
@@ -14,19 +14,25 @@ public class Main2 {
         System.out.println("Input: " + str);
         ArrayList<Character>  letters = new ArrayList<>();
         int longestSubstringLength;
-        String longestSubstring;
-        for (int i=0; i<str.length(); i++) {
-            if (!letters.contains(str.charAt(i))) {
-                letters.add(str.charAt(i));
-            } else {
-                longestSubstring = str.substring(0, i);
-                System.out.println("Output: " + longestSubstring.length());
-                System.out.println("Substring: " + longestSubstring);
-                return;
+        String longestSubstring ="";
+        String temp = "";
+        int index = 0;
+        while (longestSubstring.length()<str.length()) {
+            for (int i=0; i<str.length(); i++) {
+                if (!letters.contains(str.charAt(i))) {
+                    letters.add(str.charAt(i));
+                } else {
+                    temp = str.substring(0, i);
+                    str = str.substring(i);
+                    break;
+                }
+                temp = str.substring(0);
             }
+            if (temp.length()>longestSubstring.length()) longestSubstring = temp;
+            letters.clear();
         }
-        System.out.println("Output: " + str.length());
-        System.out.println("Substring: " + str);
+        System.out.println("Output: " + longestSubstring.length());
+        System.out.println("Substring: " + longestSubstring);
 
     }
 }
