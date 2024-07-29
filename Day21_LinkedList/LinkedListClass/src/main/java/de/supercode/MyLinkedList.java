@@ -45,11 +45,9 @@ public class MyLinkedList<E> {
         Node<E> newNode = new Node<>(data);
 
         Node<E> current = node;
-        if (current.getNext() == null && index != 0) throw new IllegalArgumentException("Out of Bound. Invalid Index");
         for (int i=1; i<index; i++) {
             current = current.getNext();
         }
-
         newNode.setNext(current.getNext());
         current.setNext(newNode);
     }
