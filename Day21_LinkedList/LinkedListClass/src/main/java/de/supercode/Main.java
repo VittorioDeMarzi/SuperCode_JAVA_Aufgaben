@@ -23,12 +23,14 @@ public class Main {
         myList.printList();
 
         System.out.println();
-        myList.add(4, 0);
+        System.out.println("Add element at index");
+        myList.add(0, 1000);
 
         myList.printList();
         System.out.println();
 
-        myList.remove(1);
+        System.out.println("remove index 0");
+        myList.remove(3);
         myList.printList();
         System.out.println();
 
@@ -39,6 +41,10 @@ public class Main {
 
         System.out.println(myList.isEmpty());
         System.out.println(myList2.isEmpty());
+        System.out.println();
+
+        myList.reverse();
+        myList.printList();
         System.out.println();
     }
 

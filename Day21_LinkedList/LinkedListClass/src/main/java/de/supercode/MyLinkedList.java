@@ -7,7 +7,7 @@ public class MyLinkedList<E> {
 
     public MyLinkedList() {
         this.node = null;
-        setSize();
+        this.size = 0;
     }
 
     private void setSize() {
@@ -38,6 +38,7 @@ public class MyLinkedList<E> {
                 current = current.getNext();
             current.setNext(newNode);
         }
+        size++;
     }
 
     public void add(int index, E data) {
@@ -45,20 +46,28 @@ public class MyLinkedList<E> {
         Node<E> newNode = new Node<>(data);
 
         Node<E> current = node;
-        for (int i=1; i<index; i++) {
+        for (int i=0; i<index; i++) {
             current = current.getNext();
         }
-        newNode.setNext(current.getNext());
-        current.setNext(newNode);
+        newNode.setNext(node);
+        node = newNode;
+        size++;
     }
 
     public void remove(int index) {
         if (node == null || index < 0 || index >= getSize()) throw new IndexOutOfBoundsException();
         Node<E> current = node;
+        if (index == 0) {
+            node = current.getNext();
+            size--;
+            return;
+        }
         for (int i=1; i<index; i++) {
             current = current.getNext();
         }
         current.setNext(current.getNext().getNext());
+        size--;
+
     }
 
     public E get(int index) {
@@ -76,8 +85,16 @@ public class MyLinkedList<E> {
 
     public void reverse() {
         if (node == null) throw new IllegalStateException("Linked List is empty");
-        int index = 0;
-
+        Node<E> current = node;
+        Node<E> previeus = null;
+        Node<E> next = null;
+        while (current != null) {
+            next = current.getNext();
+            current.setNext(previeus);
+            previeus = current;
+            current = next;
+        }
+        node = previeus;
     }
 
     public void printList() {
