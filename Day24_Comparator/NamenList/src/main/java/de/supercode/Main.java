@@ -46,10 +46,13 @@ public class Main {
 
     private static void printList(ArrayList<String> nameList) {
         System.out.println("================================================");
-        System.out.println("List of Names:");
-        for (String name : nameList) {
-            System.out.println(name);
+        if (nameList.isEmpty()) System.out.println("No names listed in the list yet. Add something first!");
+        else {
+            System.out.println("List of Names:");
+            for (String name : nameList) {
+                System.out.println(name);
+            }
+            System.out.println("================================================");
         }
-        System.out.println("================================================");
     }
 }
