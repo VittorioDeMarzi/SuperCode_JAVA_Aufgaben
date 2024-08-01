@@ -1,0 +1,72 @@
+## Aufgabenstellung
+
+Du sollst ein System erstellen, das Veranstaltungen und die Teilnehmer der Veranstaltungen verwaltet.
+
+### Veranstaltungen
+Jede Veranstaltung hat folgende Attribute:
+- **Name der Veranstaltung**
+- **Datum der Veranstaltung**
+- **Altersfreigabe**
+- **Teilnehmer** (als Liste von PersonObjekten)
+
+### Teilnehmer
+Jeder Teilnehmer hat folgende Attribute:
+- **Name des Teilnehmers**
+- **Geburtsdatum**
+
+### EventManager Klasse
+
+Das Herzstück deiner Software: **Klasse EventManager**. Sie hat zwei HashMaps als Attribute:
+1. Eine HashMap zum Speichern von Veranstaltungen nach Datum:
+   - Pro Datum gibt es eine oder mehrere Veranstaltungen.
+2. Eine verschachtelte HashMap zur Verwaltung von Teilnehmern und deren Rolle für eine entsprechende Veranstaltung:
+   - **Äußere HashMap**: Schlüssel ist der Name der Veranstaltung, Wert ist eine innere HashMap.
+   - **Innere HashMap**: Schlüssel ist der Name des Teilnehmers, Wert ist ein Set<Group> von Rollen des Teilnehmers.
+
+### Rolle (ENUM)
+Die Rolle soll als ENUM definiert werden: 
+- **SPEAKER**
+- **STARGAST**
+- **ZUSCHAUER**
+- **VOLUNTEER**
+
+### Vorteile
+- **Effizienz bei der Suche**: Eine HashMap bietet eine durchschnittliche Zeitkomplexität von O(1) für Suchoperationen.
+- **Direkter Zugriff**: Durch die Speicherung von Veranstaltungen nach Datum kann man direkt und effizient alle Veranstaltungen an einem bestimmten Datum abrufen.
+- **Effiziente Verwaltung und Abfrage**: Es ist einfacher, spezifische Informationen über Teilnehmer und ihre Gruppen zu verwalten und abzurufen, als eine tief verschachtelte Struktur in einer einzigen Liste zu haben.
+
+### Methoden der EventManager Klasse
+- **addEvent**: Fügt eine Veranstaltung hinzu und speichert sie nach Datum.
+- **addEventTeilnehmer**: Fügt einen Teilnehmer einer Veranstaltung hinzu, prüft, ob sein Alter für die Veranstaltung passt, fügt ihm Rollen für die Veranstaltung hinzu.
+- **removeEventTeilnehmer**: Entfernt einen Teilnehmer von einer Veranstaltung.
+- **getTeilnehmerByEvent**: Gibt die Teilnehmer und deren Rollen für eine Veranstaltung aus.
+- **getEventsByDate**: Gibt alle Veranstaltungen an einem bestimmten Datum zurück.
+
+### Comparator
+
+#### EventDateComparator
+Erstelle einen Comparator, der Veranstaltungen nach ihrem Datum sortiert. Die Veranstaltungen sollen in aufsteigender Reihenfolge des Datums sortiert werden.
+
+#### RoleComparator (Bonus)
+Ein Comparator für die Rollen der Teilnehmer einer Veranstaltung. Es wird angenommen, dass eine Person mehrere Rollen haben kann und nur die höchste Rolle zählt.
+
+### Rolle-Enum mit Rank
+```java
+public enum Rolle {
+    STARGAST(1),
+    SPEAKER(2),
+    ORGANIZER(3),
+    ZUSCHAUER(4),
+    VOLUNTEER(5);
+
+    private final int rank;
+
+    Rolle(int rank) {
+        this.rank = rank;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+}
+```
