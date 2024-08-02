@@ -73,10 +73,16 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Event: " + eventName +
-                ", Age Restriction: " + ageRestriction;
+        return eventName + ", Age Restriction: " + ageRestriction;
     }
 
-    Comparator<Event> dateEventComparator = Comparator.comparing(Event::getEventDate);
+    static Comparator<LocalDate> dateEventComparator = new Comparator<>() {
+        @Override
+        public int compare (LocalDate o1, LocalDate o2) {
+            return o1.compareTo(o2);
+        }
+    };
+
+
 
 }

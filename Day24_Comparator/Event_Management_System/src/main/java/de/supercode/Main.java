@@ -13,6 +13,7 @@ public class Main {
 
         LocalDate event1Date = LocalDate.of(2024, 6, 15);
 
+        // Create events with dates and age limits
         Event event1 = new Event("Summer Festival", event1Date, 12);
         Event event2 = new Event("Tech Conference", LocalDate.of(2024, 9, 20), 18);
         Event event3 = new Event("Art Exhibition", LocalDate.of(2024, 7, 25), 16);
@@ -20,8 +21,10 @@ public class Main {
         Event event5 = new Event("Yoga Retrieve", event1Date, 12);
         Event event6 = new Event("Meditation Workshop", event1Date, 12);
 
+        // Collect all events in a list
         ArrayList<Event> allEvents = new ArrayList<>(List.of(event1, event2, event3, event4, event5, event6));
 
+        // Create participants with birth dates
         Person person1 = new Person("Alice Smith", LocalDate.of(2015, 5, 15));
         Person person2 = new Person("Bob Johnson", LocalDate.of(1985, 8, 22));
         Person person3 = new Person("Charlie Brown", LocalDate.of(2000, 1, 10));
@@ -33,6 +36,7 @@ public class Main {
         Person person9 = new Person("Ian Wright", LocalDate.of(1982, 9, 5));
         Person person10 = new Person("Jane Doe", LocalDate.of(1996, 2, 14));
 
+        // Add events to the event manager
         eventManager.addEvent(event1);
         eventManager.addEvent(event2);
         eventManager.addEvent(event3);
@@ -40,6 +44,7 @@ public class Main {
         eventManager.addEvent(event5);
         eventManager.addEvent(event6);
 
+        // Add participants to events
 //      Person1 should be too young to participate
         eventManager.addEventParticipant(person1, new HashSet<>(Set.of(Role.SPEAKER)), event1);
         eventManager.addEventParticipant(person2, new HashSet<>(Set.of(Role.STARGUEST)), event2);
@@ -57,13 +62,14 @@ public class Main {
 //        eventManager.getParticipantsByEvent(event4);
 //        eventManager.getParticipantsByEvent(event5);
 
-        // print participants for all events
+        // * print participants for all events
         allEvents.forEach(eventManager::getParticipantsByEvent);
 
-        //print event by date
-//        eventManager.getEventsByDate(event1Date);
+        //  * print event by date
+        eventManager.getEventsByDate(event1Date);
 
-        // Print events for every date
+        //  * Print events for every date
+//        They are printed in chronological order according to the event dates
         eventManager.getAllEventsbyAllDates();
 
 //        eventManager.removeEventTeilnehmer(person4, event1);

@@ -5,22 +5,22 @@ import java.util.*;
 
 public class EventManager {
 //    HashMap to store events by date:
-    private TreeMap<LocalDate, HashSet<Event>> eventsMapByDate;
+    private HashMap<LocalDate, HashSet<Event>> eventsMapByDate;
 //    nested HashMap to manage participants and their roles for a specific event:
-    private TreeMap<String, TreeMap<String, HashSet<Role>>> eventsMapByNameAndPartecipants;
+    private HashMap<String, HashMap<String, HashSet<Role>>> eventsMapByNameAndPartecipants;
 
     Comparator<Event> dateEventComparator = Comparator.comparing(Event::getEventDate);
 
 
     public EventManager() {
-        eventsMapByDate = new TreeMap<>();
-        eventsMapByNameAndPartecipants = new TreeMap<>();
+        eventsMapByDate = new HashMap<>();
+        eventsMapByNameAndPartecipants = new HashMap<>();
     }
 
     public void addEvent(Event event) {
         if (event == null) throw new IllegalArgumentException("Event is null");
 
-        eventsMapByNameAndPartecipants.put(event.getEventName(), new TreeMap<>());
+        eventsMapByNameAndPartecipants.put(event.getEventName(), new HashMap<>());
         if (eventsMapByDate.get(event.getEventDate()) == null) eventsMapByDate.put(event.getEventDate(), new HashSet<>(List.of(event)));
         else eventsMapByDate.get(event.getEventDate()).add(event);
 
@@ -42,7 +42,7 @@ public class EventManager {
 
     public void getParticipantsByEvent(Event event) {
         System.out.println("====================================================================");
-        System.out.println("List of participant for the event " + event.getEventName() + ":");
+        System.out.println("List of participant for the event " + event.getEventName() + " [Date: " + event.getEventDate() +  "]:");
         if (!eventsMapByNameAndPartecipants.get(event.getEventName()).isEmpty()) {
             eventsMapByNameAndPartecipants.get(event.getEventName()).forEach((person, roles) -> System.out.println("\t" + person + " " + roles));
         }
@@ -50,22 +50,22 @@ public class EventManager {
             System.out.println("\t*+* NO PARTICIPANTS ENROLLED YET *+*");
 
         }
-        System.out.println("====================================================================");
     }
 
     public void getEventsByDate(LocalDate date) {
         System.out.println("====================================================================");
-        System.out.println("List of events for the date " + date + " are the following:");
+        System.out.println("" + date + ":");
         if (eventsMapByDate.get(date) != null) {
-            List<Map.Entry<LocalDate, HashSet<Event>>> toSort = new ArrayList<>(eventsMapByDate.entrySet());
             eventsMapByDate.get(date).forEach(event -> System.out.println("\t" + event));
         }
         else System.out.println("\t*+*  NONE *+*");
-        System.out.println("====================================================================");
     }
 
     public void getAllEventsbyAllDates() {
-        eventsMapByDate.forEach((data, set) ->  getEventsByDate(data));
+        System.out.println("***** EVENT LIST FOR ALL DATES *****");
+        List<LocalDate> toSort = new ArrayList<>(eventsMapByDate.keySet());
+        toSort.sort(Event.dateEventComparator);
+        toSort.forEach(this::getEventsByDate);
 
     }
 
