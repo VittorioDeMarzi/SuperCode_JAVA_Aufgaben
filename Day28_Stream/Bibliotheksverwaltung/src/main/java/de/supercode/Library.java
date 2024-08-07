@@ -119,4 +119,11 @@ public class Library {
         System.out.println("*************************************************************");
 
     }
+
+    public void printAveragePublicationYear() {
+        int average = (int) books.stream()
+                .mapToInt(Book::getPublicationYear)
+                .average().getAsDouble();
+        System.out.println("Average Publication Year of the Books: " + average);
+    }
 }

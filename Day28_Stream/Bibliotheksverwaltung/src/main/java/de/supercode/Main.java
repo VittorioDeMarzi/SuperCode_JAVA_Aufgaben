@@ -77,20 +77,23 @@ public class Main {
 //      Print books borrowed from member
         members.get(0).printBorrowedBooks();
 
-//      Ein Buch von einem Mitglied zurückgeben.
+//      Return a Book by a Member
         library.returnBook(100001, books.get(0));
 
 //      Print books borrowed from member now is empty
         members.get(0).printBorrowedBooks();
 
-//      Liste aller Bücher eines bestimmten Genres
+//      List of All Books of a Specific Genre
         library.printBooksFromGenre("Fiction");
 
-//      Liste aller Autoren ohne Duplikate
+//      List of All Authors Without Duplicates
         library.printAllAuthors();
 
-//      Top 5 der meistgeliehenen Bücher
+//      Top 5 Most Borrowed Books
         library.printMostFiveBorrowedBooks();
+
+//      Average Publication Year of the Books
+        library.printAveragePublicationYear();
     }
 
 }
