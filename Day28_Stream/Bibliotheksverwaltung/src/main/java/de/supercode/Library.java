@@ -1,8 +1,7 @@
 package de.supercode;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
@@ -43,7 +42,7 @@ public class Library {
     }
 
     // Ein Buch an ein Mitglied ausleihen.
-    public void borrowBook(int memberId, Book book) {
+    public void  borrowBook(int memberId, Book book) {
         Member member = getLibraryMember(memberId);
         Book bookToBorrow = getBookFromLibraryList(book);
         member.borrowBook(book);
@@ -99,6 +98,24 @@ public class Library {
                 .distinct()
                 .sorted(Comparator.naturalOrder())
                 .forEach(System.out::println);
+        System.out.println("*************************************************************");
+
+    }
+
+    public void printMostFiveBorrowedBooks() {
+        System.out.println("Top 5 Most Borrowed Books:");
+        List<Map.Entry<Book, Long>> books = members.stream()
+                .map(Member::getBorrowedBooks)
+                .flatMap(Collection::stream)
+                .collect(Collectors.groupingBy(book -> book, Collectors.counting()))
+                .entrySet()
+                .stream()
+                .sorted(Comparator.comparingInt(b -> Math.toIntExact(b.getValue())))
+                .collect(Collectors.toList()).reversed();
+
+        books.stream()
+                .limit(5)
+                .forEach(b -> System.out.println(b.getKey() + ", Number Times Borrowed: " + b.getValue()));
         System.out.println("*************************************************************");
 
     }

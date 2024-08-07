@@ -59,6 +59,20 @@ public class Main {
 
 //      Ein Buch an ein Mitglied ausleihen.
         library.borrowBook(100001, books.get(0));
+        library.borrowBook(100002, books.get(0));
+        library.borrowBook(100003, books.get(1));
+        library.borrowBook(100004, books.get(3));
+        library.borrowBook(100005, books.get(1));
+        library.borrowBook(100001, books.get(2));
+        library.borrowBook(100006, books.get(2));
+        library.borrowBook(100002, books.get(3));
+        library.borrowBook(100010, books.get(3));
+        library.borrowBook(100009, books.get(4));
+        library.borrowBook(100008, books.get(6));
+        library.borrowBook(100001, books.get(6));
+        library.borrowBook(100002, books.get(6));
+        library.borrowBook(100003, books.get(7));
+        library.borrowBook(100004, books.get(8));
 
 //      Print books borrowed from member
         members.get(0).printBorrowedBooks();
@@ -75,7 +89,8 @@ public class Main {
 //      Liste aller Autoren ohne Duplikate
         library.printAllAuthors();
 
-
+//      Top 5 der meistgeliehenen Bücher
+        library.printMostFiveBorrowedBooks();
     }
 
 }
