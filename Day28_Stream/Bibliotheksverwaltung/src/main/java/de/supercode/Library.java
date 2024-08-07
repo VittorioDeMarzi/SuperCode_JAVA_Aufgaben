@@ -1,6 +1,7 @@
 package de.supercode;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Library {
@@ -55,6 +56,7 @@ public class Library {
         member.returnBook(book);
     }
 
+    // Search Book and Member if they are registered in library
     private Book getBookFromLibraryList(Book book) {
         return books.stream()
                 .filter(b -> b == book)
@@ -69,6 +71,8 @@ public class Library {
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
     }
 
+//  Print Methods
+
     public void printMembers() {
         System.out.println("Current members of the library:");
         members.forEach(System.out::println);
@@ -79,7 +83,23 @@ public class Library {
         System.out.println("Current books in the library:");
         books.forEach(System.out::println);
         System.out.println("*************************************************************");
-
     }
 
+    public void printBooksFromGenre(String genre) {
+        System.out.println("Books in library with genre: " + genre);
+        books.stream()
+                .filter(b -> b.getGenre().equals(genre))
+                .forEach(System.out::println);
+        System.out.println("*************************************************************");
+    }
+
+    public void printAllAuthors() {
+        books.stream()
+                .map(Book::getAuthor)
+                .distinct()
+                .sorted(Comparator.naturalOrder())
+                .forEach(System.out::println);
+        System.out.println("*************************************************************");
+
+    }
 }

@@ -18,7 +18,21 @@ public class Main {
                 new Book("Jane Austen", "Pride and Prejudice", "Romance", 1813),
                 new Book("F. Scott Fitzgerald", "The Great Gatsby", "Fiction", 1925),
                 new Book("Stephen Hawking", "A Brief History of Time", "Science", 1988),
-                new Book("Margaret Atwood", "The Handmaid's Tale", "Dystopian", 1985)
+                new Book("Margaret Atwood", "The Handmaid's Tale", "Dystopian", 1985), new Book("Margaret Atwood", "The Handmaid's Tale", "Dystopian", 1985),
+                new Book("Margaret Atwood", "Oryx and Crake", "Science Fiction", 2003),
+                new Book("Margaret Atwood", "The Blind Assassin", "Fiction", 2000),
+                new Book("Margaret Atwood", "Alias Grace", "Historical Fiction", 1996),
+                new Book("Margaret Atwood", "The Testaments", "Dystopian", 2019),
+                new Book("Stephen Hawking", "A Brief History of Time", "Science", 1988),
+                new Book("Stephen Hawking", "The Universe in a Nutshell", "Science", 2001),
+                new Book("Stephen Hawking", "The Grand Design", "Science", 2010),
+                new Book("Stephen Hawking", "Black Holes and Baby Universes and Other Essays", "Science", 1993),
+                new Book("Stephen Hawking", "Brief Answers to the Big Questions", "Science", 2018),
+                new Book("Malcolm Gladwell", "The Tipping Point: How Little Things Can Make a Big Difference", "Non-Fiction", 2000),
+                new Book("Malcolm Gladwell", "Blink: The Power of Thinking Without Thinking", "Non-Fiction", 2005),
+                new Book("Malcolm Gladwell", "Outliers: The Story of Success", "Non-Fiction", 2008),
+                new Book("Malcolm Gladwell", "What the Dog Saw: And Other Adventures", "Non-Fiction", 2009),
+                new Book("Malcolm Gladwell", "David and Goliath: Underdogs, Misfits, and the Art of Battling Giants", "Non-Fiction", 2013)
         ));
         library.setBooks(books);
 //      Print all books from library
@@ -52,7 +66,16 @@ public class Main {
 //      Ein Buch von einem Mitglied zurückgeben.
         library.returnBook(100001, books.get(0));
 
-        //      Print books borrowed from member now is empty
+//      Print books borrowed from member now is empty
         members.get(0).printBorrowedBooks();
+
+//      Liste aller Bücher eines bestimmten Genres
+        library.printBooksFromGenre("Fiction");
+
+//      Liste aller Autoren ohne Duplikate
+        library.printAllAuthors();
+
+
     }
+
 }
