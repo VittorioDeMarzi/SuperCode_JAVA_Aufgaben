@@ -104,16 +104,12 @@ public class Library {
 
     public void printMostFiveBorrowedBooks() {
         System.out.println("Top 5 Most Borrowed Books:");
-        List<Map.Entry<Book, Long>> books = members.stream()
+        members.stream()
                 .map(Member::getBorrowedBooks)
                 .flatMap(Collection::stream)
                 .collect(Collectors.groupingBy(book -> book, Collectors.counting()))
-                .entrySet()
-                .stream()
-                .sorted(Comparator.comparingInt(b -> Math.toIntExact(b.getValue())))
-                .collect(Collectors.toList()).reversed();
-
-        books.stream()
+                .entrySet().stream()
+                .sorted(Map.Entry.<Book, Long>comparingByValue().reversed())
                 .limit(5)
                 .forEach(b -> System.out.println(b.getKey() + ", Number Times Borrowed: " + b.getValue()));
         System.out.println("*************************************************************");
