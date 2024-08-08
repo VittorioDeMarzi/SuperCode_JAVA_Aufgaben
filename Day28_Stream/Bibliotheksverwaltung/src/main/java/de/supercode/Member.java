@@ -65,7 +65,7 @@ public class Member {
 
     public void printBorrowedBooks() {
         System.out.println("Books borrowed from " + this.name + " ID: " + this.memberId);
-        borrowedBooks.forEach(System.out::println);
+        borrowedBooks.forEach(book -> System.out.println("\t" + book));
         System.out.println("*************************************************************");
 
     }

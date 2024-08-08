@@ -94,6 +94,9 @@ public class Main {
 
 //      Average Publication Year of the Books
         library.printAveragePublicationYear();
+
+//      Grouping the Books by Genre
+        library.groupBooksByGenre();
     }
 
 }

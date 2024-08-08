@@ -80,7 +80,7 @@ public class Library {
 
     public void printAllBooks() {
         System.out.println("Current books in the library:");
-        books.forEach(System.out::println);
+        books.forEach(book -> System.out.println("\t" + book));
         System.out.println("*************************************************************");
     }
 
@@ -88,7 +88,7 @@ public class Library {
         System.out.println("Books in library with genre: " + genre);
         books.stream()
                 .filter(b -> b.getGenre().equals(genre))
-                .forEach(System.out::println);
+                .forEach(book -> System.out.println("\t" + book));
         System.out.println("*************************************************************");
     }
 
@@ -97,7 +97,7 @@ public class Library {
                 .map(Book::getAuthor)
                 .distinct()
                 .sorted(Comparator.naturalOrder())
-                .forEach(System.out::println);
+                .forEach(book -> System.out.println("\t" + book));
         System.out.println("*************************************************************");
 
     }
@@ -111,7 +111,7 @@ public class Library {
                 .entrySet().stream()
                 .sorted(Map.Entry.<Book, Long>comparingByValue().reversed())
                 .limit(5)
-                .forEach(b -> System.out.println(b.getKey() + ", Number Times Borrowed: " + b.getValue()));
+                .forEach(b -> System.out.println("\t" + b.getKey() + ", Number Times Borrowed: " + b.getValue()));
         System.out.println("*************************************************************");
 
     }
@@ -121,5 +121,19 @@ public class Library {
                 .mapToInt(Book::getPublicationYear)
                 .average().getAsDouble();
         System.out.println("Average Publication Year of the Books: " + average);
+        System.out.println("*************************************************************");
+
+    }
+
+
+    public void groupBooksByGenre() {
+        books.stream()
+                .collect(Collectors.groupingBy(Book::getGenre))
+                .forEach((genre,books) -> {
+                    System.out.println(genre);
+                    books.stream()
+                            .forEach(book -> System.out.println("\t" + book));
+                });
+        System.out.println("*************************************************************");
     }
 }
