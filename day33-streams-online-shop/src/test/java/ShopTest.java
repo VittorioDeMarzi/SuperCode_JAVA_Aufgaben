@@ -73,6 +73,7 @@ class ShopTest {
 
         o4.addProduct(monitor, 13);
         o4.addProduct(keyboard, 12);
+        o4.addProduct(rolex,1);
         o4.setHasPaid(true);
         o4.setOrderDate(kursbeginnInstant);
         shop.addOrder(o4);
@@ -91,7 +92,7 @@ class ShopTest {
 
     @Test
     void totalOrderValue() {
-        assertEquals(18154.98f, shop.getOrderList().get(0).totalOrderValue());
+        assertEquals(162154.98f, shop.getOrderList().get(0).totalOrderValue());
     }
 
     @Test
@@ -102,7 +103,7 @@ class ShopTest {
 
     @Test
     void customerWithHighestLifetimeValue() {
-        assertEquals(anna, shop.customerWithHighestLifetimeValue());
+        assertEquals(kazim, shop.customerWithHighestLifetimeValue());
     }
 
 
@@ -133,19 +134,23 @@ class ShopTest {
 //  Kunden mit Bestellungen über einen bestimmten Wert
     @Test
     void customerWithOrdersOverAValue() {
-        assertEquals(List.of(kazim, anna), shop.customerWithOrdersOverAValue(30000));
+        assertEquals(List.of(anna, kazim), shop.customerWithOrdersOverAValue(30000));
     }
 
 //  Top-Kunden pro Produkt → finde die Top-N Kunden für ein bestimmtes Produkt basierend auf der Anzahl der Bestellungen dieses Produkts
     @Test
     void topNKundenOneProduct() {
-        assertEquals(kazim, shop.topNKundenOneProduct(rolex, 1));
+        assertEquals(List.of(kazim), shop.topNKundenOneProduct(rolex, 1));
     }
 
 //  Welche Produktkategorie bringt den meisten Umsatz? (Muss implementiert werden)
-//    @Test
-//    void categoryMostSold() {
-//        assertEquals(Category.ELECTRONICS, shop.categoryMostSold());
-//    }
+    @Test
+    void topCategoryByRevenue() {
+        assertEquals(Category.FASHION, shop.topCategoryByRevenue());
+    }
 
+    @Test
+    void productWithMostCustomers() {
+        assertEquals(rolex, shop.productWithMostCustomers());
+    }
 }
