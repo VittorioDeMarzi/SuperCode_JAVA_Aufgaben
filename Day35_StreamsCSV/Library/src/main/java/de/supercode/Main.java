@@ -99,8 +99,13 @@ public class Main {
         List<Book> mostLoanedBooks = library.getMostLoanedBooks();
 //        mostLoanedBooks.forEach(System.out::println);
 
+        Map<Book, Long> loanCountPerBook = library.getLoanCountPerBook();
+//        loanCountPerBook.forEach((k,v) -> System.out.println(k + ", times borrowed:  " + v));
 
+        List<Book> booksLoanedByAuthor = library.getBooksLoanedByAuthor(author1);
+//        booksLoanedByAuthor.forEach(System.out::println);
 
-
+        String mostPopularAuthorByBorrowedBooksCount = library.getMostPopularAuthorByBorrowedBooksCount();
+//        System.out.println("Most Popular Author By Borrowed Books Count" + mostPopularAuthorByBorrowedBooksCount);
     }
 }

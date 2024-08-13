@@ -70,33 +70,47 @@ class Library {
         return loans.stream()
                 .collect(Collectors.groupingBy(Loan::getBook, Collectors.counting()))
                 .entrySet().stream()
-                .peek(System.out::println)
                 .sorted(Comparator.comparingLong(Map.Entry::getValue))
                 .map(Map.Entry::getKey).toList().reversed();
     }
 
     // 8. Übung
     public Map<Book, Long> getLoanCountPerBook() {
-        return null;
-
+        return loans.stream()
+                .map(Loan::getBook)
+                .collect(Collectors.groupingBy(book->book, Collectors.counting()))
+                .entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
     // 9. Übung
     public List<Book> getBooksLoanedByAuthor(Author author) {
-        return null;
-
+        return loans.stream()
+                .map(Loan::getBook)
+                .flatMap(book -> book.getAuthors().stream().map(aut -> new AbstractMap.SimpleEntry<>(
+                        aut,
+                        book
+                        )))
+                .collect(Collectors.groupingBy(Map.Entry::getKey, Collectors.mapping(Map.Entry::getValue, Collectors.toList())))
+                .entrySet().stream()
+                .filter(aut -> aut.getKey() == author)
+                .flatMap(map->map.getValue().stream())
+                .collect(Collectors.toList());
     }
 
     // 10. Übung
     public double getAverageLoanDuration() {
-        return 1.0;
-
+        return 1;
     }
 
     // Bonus: 11. Übung
     public String getMostPopularAuthorByBorrowedBooksCount() {
-        return null;
-
+        return loans.stream()
+                .flatMap(loan -> loan.getBook().getAuthors().stream())
+                .collect(Collectors.groupingBy(author -> author, Collectors.counting()))
+                .entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey).toString();
     }
 
 }
