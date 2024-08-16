@@ -1,17 +1,14 @@
 package de.supercode;
-
-import static de.supercode.Content.EMPTY;
-import static de.supercode.Content.MINE;
 import static de.supercode.State.*;
 
 public class Cell {
-    private Content content;
+    private Boolean isMine;
     private State state;
     private int touchingMines;
 
     public Cell() {
-        this.content = EMPTY;
-        this.state = REVEALED;
+        this.isMine = false;
+        this.state = HIDDEN;
         this.touchingMines = 0;
     }
 
@@ -19,12 +16,12 @@ public class Cell {
         return touchingMines;
     }
 
-    public Content getContent() {
-        return content;
+    public Boolean getIsMine() {
+        return isMine;
     }
 
-    public void setContent(Content content) {
-        this.content = content;
+    public void setIsMine() {
+        this.isMine = true;
     }
 
     public State getState() {
@@ -55,7 +52,7 @@ public class Cell {
     }
 
     boolean isMine() {
-        return this.content == MINE;
+        return this.isMine;
     }
 
     public boolean isFlagged() {
@@ -66,7 +63,7 @@ public class Cell {
         return this.state == REVEALED;
     }
 
-    public void increaseCouterAdiacentMines() {
+    public void increaseCounterAdiacentMines() {
         this.touchingMines++;
     }
 }

@@ -1,45 +1,33 @@
 package de.supercode;
 
-import java.util.Arrays;
-
-import static de.supercode.Content.EMPTY;
-import static de.supercode.Content.MINE;
-import static de.supercode.State.FLAGGED;
+import static de.supercode.Main.*;
 
 public class GameBoard {
-
-    private final int[] di = new int[] { -1, -1, -1, 0, 1, 1, 1, 0 };
-    private final int[] dj = new int[] { -1, 0, 1, 1, 1, 0, -1, -1 };
 
     private int MINES;
     private int ROWS;
     private int COLUMNS;
+    private int remainingFreeCells;
 
+    // The game board as a 2D array of Cell objects
     private Cell[][] board;
 
+    // Constructor to initialize the game board with the given columns, rows, and mines.
     public GameBoard(int columns, int rows, int mines) {
         this.ROWS = rows;
         this.COLUMNS = columns;
         this.MINES = mines;
+        this.remainingFreeCells = (ROWS*COLUMNS) - MINES;
         initialiseEmptyBoard();
         minesSetter();
-//        setNumberAdiacentMines();
     }
 
-//    For each non-mine cell, calculate the number of adjacent mines and store this number in the cell
-    private void setNumberAdiacentMines() {
-        for (int i = 0; i < MINES; i++) {
-            for (int j=0; j<COLUMNS;j++) {
-                board[i][j] = new Cell();
-            }
-        }
-    }
-
+    // Initializes the board with empty cells
     private void initialiseEmptyBoard() {
-        this.board = new Cell[MINES][COLUMNS];
-        for (int i = 0; i < MINES; i++) {
-            for (int j=0; j<COLUMNS;j++) {
-                board[i][j] = new Cell();
+        this.board = new Cell[ROWS][COLUMNS];
+        for (int x = 0; x < ROWS; x++) {
+            for (int y=0; y<COLUMNS;y++) {
+                board[x][y] = new Cell();
             }
         }
     }
@@ -47,21 +35,21 @@ public class GameBoard {
     private void minesSetter() {
 //        Randomly place the mines on the field
         for (int mine = 0; mine < MINES; mine++) {
-            int i = (int) (Math.random() * ROWS);
-            int j = (int) (Math.random() * COLUMNS);
-            if (board[i][j].getContent() == EMPTY){
-                board[i][j].setContent(MINE);
-                addCounterToNeighbours(i, j);
+            int x = (int) (Math.random() * ROWS);
+            int y = (int) (Math.random() * COLUMNS);
+            if (!board[x][y].isMine()){
+                board[x][y].setIsMine();   // Place a mine in the cell
+                increaseCounterAdjacentCells(x, y); //  Update adjacent cells' mine counts
             }
             else mine--;
         }
     }
 
-    private void addCounterToNeighbours(int i, int j) {
+    private void increaseCounterAdjacentCells(int i, int j) {
         for (int x = i-1; x <= i+1; x++)
             for (int y = j-1; y <= j+1; y++)
                 if (x>=0 && x<ROWS && y>=0 && y<COLUMNS)
-                    if (!board[x][y].isMine()) board[x][y].increaseCouterAdiacentMines();
+                    if (!board[x][y].isMine()) board[x][y].increaseCounterAdiacentMines();
 
     }
 
@@ -74,4 +62,55 @@ public class GameBoard {
         }
     }
 
+    public void revealCellContent(int x, int y) {
+        if (board[x][y].isFlagged()) return;
+        board[x][y].setState(State.REVEALED);
+        remainingFreeCells--;
+        if (board[x][y].getTouchingMines() == 0) {
+            revealAdjacentCellContent(x, y);
+        }
+    }
+
+    private void revealAdjacentCellContent(int i, int j) {
+        for (int x = i-1; x <= i+1; x++)
+            for (int y = j-1; y <= j+1; y++)
+                if (x>=0 && x<ROWS && y>=0 && y<COLUMNS && !board[x][y].isRevealed() && !board[x][y].isFlagged())
+                    revealCellContent(x, y);
+    }
+
+    public void endGameAndRevealAllMines() {
+        System.out.println(ANSI_RED + "You uncovered a mine! Game over." + ANSI_RESET);
+        for (Cell[] row : board) {
+            for (Cell cell : row) {
+                cell.setState(State.REVEALED);
+            }
+        }
+    }
+
+    public Boolean isMine(int x, int y) {
+        return board[x][y].isMine();
+    }
+
+    public void flagCell(int x, int y) {
+
+        switch (board[x][y].getState()) {
+            case HIDDEN -> board[x][y].setState(State.FLAGGED);
+            case FLAGGED -> board[x][y].setState(State.HIDDEN);
+        }
+
+    }
+
+    public int getRemainingFreeCells() {
+        return remainingFreeCells;
+    }
+
+    public void yuoWon() {
+        System.out.println(ANSI_GREEN + "CONGRATULATION.. YOU WON THE GAME!" + ANSI_RESET);
+        for (Cell[] row : board) {
+            for (Cell cell : row) {
+                cell.setState(State.REVEALED);
+            }
+        }
+        printGameBoard();
+    }
 }
