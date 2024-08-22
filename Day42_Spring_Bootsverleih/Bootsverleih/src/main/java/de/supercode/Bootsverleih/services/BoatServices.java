@@ -34,7 +34,4 @@ public class BoatServices {
         return boatRepository.getBoatByName(name);
     }
 
-    public void updateBoat(long id, Boat newBoat) {
-        boatRepository.updateBoat(id, newBoat);
-    }
 }

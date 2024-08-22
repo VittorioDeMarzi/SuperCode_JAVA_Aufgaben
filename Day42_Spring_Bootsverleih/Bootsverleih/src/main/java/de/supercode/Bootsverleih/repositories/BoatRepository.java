@@ -42,8 +42,4 @@ public class BoatRepository {
         return new ArrayList<>(boatsDB.stream().filter(b-> b.getName().toLowerCase().contains(name.toLowerCase())).toList());
     }
 
-
-    public void updateBoat(long id, Boat newBoat) {
-        newBoat.setId(id);
-    }
 }
