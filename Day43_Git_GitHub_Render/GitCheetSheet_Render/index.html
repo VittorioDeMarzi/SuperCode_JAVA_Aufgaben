@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Git Cheat Sheet</title>
+  </head>
+  <body>
+    <header>
+      <h1>Git & GitHub</h1>
+      <h2>Cheat Sheet</h2>
+    </header>
+
+    <main>
+      <p>
+        Git is a distributed version control system used to track changes in
+        source code during software development. It allows multiple developers
+        to work on a project simultaneously without interfering with each
+        other’s work. Git helps manage versions of code, enabling you to track
+        changes, revert to previous states, and collaborate more effectively.
+      </p>
+
+      <article>
+        <h3>Configuration:</h3>
+        <ul>
+          <li>
+            <code>git config --global user.name "Your Name"</code> - Set the
+            global username for commits.
+          </li>
+          <li>
+            <code>git config --global user.email "your.email@example.com"</code> -
+            Set the global email for commits.
+          </li>
+        </ul>
+      </article>
+
+      <section>
+        <h3>Repository Setup:</h3>
+        <ul>
+          <li><code>git init</code> - Initialize a new Git repository.</li>
+          <li>
+            <code>git clone &lt;repo-url&gt;</code> - Clone a repository from a
+            remote URL.
+          </li>
+        </ul>
+      </section>
+
+      <article>
+        <h3>Basic Workflow:</h3>
+        <ul>
+          <li><code>git status</code> - Show the working directory status.</li>
+          <li><code>git add &lt;file&gt;</code> - Stage a file for commit.</li>
+          <li>
+            <code>git add .</code> - Stage all changes in the current directory.
+          </li>
+          <li>
+            <code>git commit -m "Commit message"</code> - Commit staged changes
+            with a message.
+          </li>
+          <li>
+            <code>git pull</code> - Fetch and merge changes from the remote
+            repository.
+          </li>
+          <li>
+            <code>git push</code> - Push local commits to the remote repository.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Branching and Merging:</h3>
+        <ul>
+          <li><code>git branch</code> - List all branches.</li>
+          <li>
+            <code>git branch &lt;branch-name&gt;</code> - Create a new branch.
+          </li>
+          <li>
+            <code>git checkout &lt;branch-name&gt;</code> - Switch to a branch.
+          </li>
+          <li>
+            <code>git checkout -b &lt;branch-name&gt;</code> - Create and switch
+            to a new branch.
+          </li>
+          <li>
+            <code>git merge &lt;branch-name&gt;</code> - Merge changes from a
+            branch into the current branch.
+          </li>
+          <li>
+            <code>git branch -d &lt;branch-name&gt;</code> - Delete a branch.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Viewing Changes:</h3>
+        <ul>
+          <li><code>git log</code> - Show commit history.</li>
+          <li>
+            <code>git diff</code> - Show changes between commits or working
+            directory and index.
+          </li>
+          <li>
+            <code>git show &lt;commit&gt;</code> - Show details of a specific
+            commit.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Undoing Changes:</h3>
+        <ul>
+          <li><code>git reset &lt;file&gt;</code> - Unstage a file.</li>
+          <li>
+            <code>git reset --hard &lt;commit&gt;</code> - Reset the working
+            directory to a specific commit.
+          </li>
+          <li>
+            <code>git revert &lt;commit&gt;</code> - Create a new commit that
+            undoes changes from a specific commit.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Stashing Changes:</h3>
+        <ul>
+          <li><code>git stash</code> - Stash the current changes.</li>
+          <li>
+            <code>git stash pop</code> - Apply the most recent stash and remove it
+            from the stash list.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Push Single File:</h3>
+        <ul>
+          <li><code>git add &lt;file&gt;</code> - Stage the file for commit.</li>
+          <li>
+            <code>git commit -m "Commit message"</code> - Commit the file with a
+            message.
+          </li>
+          <li>
+            <code>git push</code> - Push the commit to the remote repository.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Rebasing:</h3>
+        <ul>
+          <li>
+            <code>git rebase &lt;branch&gt;</code> - Rebase the current branch
+            onto the specified branch.
+          </li>
+          <li>
+            <code>git rebase --continue</code> - Continue the rebase after
+            resolving conflicts.
+          </li>
+          <li>
+            <code>git rebase --abort</code> - Abort the rebase and return to the
+            previous state.
+          </li>
+        </ul>
+      </article>
+
+      <h2>GitHub Commands</h2>
+
+      <article>
+        <h3>Forking and Cloning:</h3>
+        <ul>
+          <li>
+            <code>git clone &lt;repo-url&gt;</code> - Clone a repository from
+            GitHub.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Creating Pull Requests:</h3>
+        <ul>
+          <li>Go to the GitHub repository page.</li>
+          <li>Click on the "Pull requests" tab.</li>
+          <li>Click the "New pull request" button.</li>
+          <li>
+            Choose the base and compare branches, then click "Create pull
+            request".
+          </li>
+        </ul>
+      </article>
+    </main>
+  </body>
+</html>
