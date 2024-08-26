@@ -5,9 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Repository
@@ -50,4 +48,9 @@ public class PhotoRepository {
         return photosDB.removeIf(p -> Objects.equals(p.getFilename(), name));
     }
 
+    // update
+    public void updatePhoto(String filename, Photo photo) {
+        deletePhoto(filename);
+        photosDB.add(photo);
+    }
 }

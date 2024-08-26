@@ -45,4 +45,8 @@ public class PhotoService {
         return photoRepository.deletePhoto(name);
     }
 
+    // update
+    public void updatePhoto(String filename, Photo photo) {
+        photoRepository.updatePhoto(filename, photo);
+    }
 }

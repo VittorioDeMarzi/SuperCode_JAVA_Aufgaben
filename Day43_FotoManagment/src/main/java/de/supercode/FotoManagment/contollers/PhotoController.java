@@ -50,4 +50,26 @@ public class PhotoController {
         if (ascending) return photoService.sortPhotosASC();
         else return photoService.sortPhotosDESC();
     }
+
+    // delete
+    @DeleteMapping("/{filename}")
+    public ResponseEntity<?> deletePhoto(@PathVariable String filename) {
+        Photo photo = photoService.getPhotoByName(filename);
+        if (photo == null) return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, "Picture not found!!"), HttpStatus.NOT_FOUND);
+        else {
+            photoService.deletePhoto(filename);
+            return new ResponseEntity<>(photo, HttpStatus.GONE);
+        }
+    }
+
+    // put
+    @PutMapping("/{filename}")
+    public ResponseEntity<?> updatePhoto(@PathVariable String filename, @RequestBody Photo newPhoto) {
+        Photo photoToUpdate = photoService.getPhotoByName(filename);
+        if (photoToUpdate == null) return new ResponseEntity<>(new ApiError(HttpStatus.NOT_FOUND, "Picture not found!!"), HttpStatus.NOT_FOUND);
+        else {
+            photoService.updatePhoto(filename, newPhoto);
+            return new ResponseEntity<>(newPhoto, HttpStatus.GONE);
+        }
+    }
 }
