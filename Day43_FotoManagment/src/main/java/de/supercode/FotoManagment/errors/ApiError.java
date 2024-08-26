@@ -1,0 +1,23 @@
+package de.supercode.FotoManagment.errors;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Component;
+
+public class ApiError {
+
+    private HttpStatus status;
+    private String message;
+
+    public ApiError(HttpStatus status, String message) {
+        this.status = status;
+        this.message = message;
+    }
+
+    public int getStatus() {
+        return status.value();
+    }
+
+    public String getMessage() {
+        return message;
+    }
+}
