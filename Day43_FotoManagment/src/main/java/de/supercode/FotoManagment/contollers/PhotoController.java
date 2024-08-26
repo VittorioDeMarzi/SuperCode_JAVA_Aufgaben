@@ -23,8 +23,12 @@ public class PhotoController {
 
     // post
     @PostMapping("/photo")
-    public Photo setPhoto (@RequestBody Photo photo) {
-        return photoService.setPhoto(photo);
+    public ResponseEntity<?> setPhoto (@RequestBody Photo photoToAdd) {
+        Photo photo = photoService.getPhotoByName(photoToAdd.getFilename());
+        if (photo == null) {
+            photoService.setPhoto(photoToAdd);
+            return new ResponseEntity<>(photoToAdd,HttpStatus.CREATED);
+        } else return new ResponseEntity<>(new ApiError(HttpStatus.ALREADY_REPORTED, "Picture is already in Data Bank"), HttpStatus.ALREADY_REPORTED);
     }
 
     // get
