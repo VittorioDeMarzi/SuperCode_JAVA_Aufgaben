@@ -21,7 +21,7 @@ public class PhotoController {
         this.photoService = photoService;
     }
 
-    // post
+    // post_ che if the picture is already in DB, otherwise it will be saved.
     @PostMapping("/photo")
     public ResponseEntity<?> setPhoto (@RequestBody Photo photoToAdd) {
         Photo photo = photoService.getPhotoByName(photoToAdd.getFilename());
