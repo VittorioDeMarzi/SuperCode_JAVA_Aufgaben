@@ -7,5 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface BoatRepository extends CrudRepository<Boat, Long> {
-    public List<Boat> searchByName(String name);
+    List<Boat> findByName(String name);
+
+    List<Boat> findByCategory(String category);
+
+    List<Boat> findBoatsByCapacityGreaterThan(int capacity);
 }

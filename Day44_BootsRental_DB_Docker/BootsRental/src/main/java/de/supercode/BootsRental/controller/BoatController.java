@@ -44,6 +44,18 @@ public class BoatController {
         return boatService.findByName(name);
     }
 
+    @GetMapping("/boat/capacityGreaterThan")
+    public List<Boat> findBoatsByCapacityGreaterThan(@RequestParam int capacity) {
+        return boatService.findBoatsByCapacityGreaterThan(capacity);
+    }
+
+
+    // filter
+    @GetMapping("/boat")
+    public List<Boat> findByType(@RequestParam String category) {
+        return boatService.findByType(category);
+    }
+
     // delete
     @DeleteMapping("/boat/{id}")
     public ResponseEntity<?> deleteById(@PathVariable long id) {

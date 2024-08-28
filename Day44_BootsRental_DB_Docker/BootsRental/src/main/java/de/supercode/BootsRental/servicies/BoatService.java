@@ -33,7 +33,16 @@ public class BoatService {
     }
 
     public List<Boat> findByName(String name) {
-        return boatRepository.searchByName(name);
+        return boatRepository.findByName(name);
+    }
+
+    public List<Boat> findBoatsByCapacityGreaterThan(int capacity) {
+        return boatRepository.findBoatsByCapacityGreaterThan(capacity);
+    }
+
+    // filter
+    public List<Boat> findByType(String category) {
+        return boatRepository.findByCategory(category);
     }
 
     // delete
@@ -49,6 +58,5 @@ public class BoatService {
         boat.setName(newBoat.getName());
         boatRepository.save(boat);
     }
-
 
 }
