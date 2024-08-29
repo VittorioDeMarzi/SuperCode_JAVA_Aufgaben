@@ -19,8 +19,8 @@ public class FakeService {
 
     public Friend friendCreator() {
         Friend fr = new Friend();
-        fr.setFirstName(faker.gameOfThrones().character());
-        fr.setLastName(faker.funnyName().name());
+        fr.setFirstName(faker.pokemon().name());
+        fr.setLastName(faker.dragonBall().character());
         fr.setBirthDate(faker.date().birthday().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         fr.setPhonNumber(faker.phoneNumber().cellPhone());
         fr.setEmail(faker.internet().emailAddress());
@@ -32,7 +32,7 @@ public class FakeService {
     }
 
     public void createData() {
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 15; i++) {
             friendRepository.save(friendCreator());
         }
     }

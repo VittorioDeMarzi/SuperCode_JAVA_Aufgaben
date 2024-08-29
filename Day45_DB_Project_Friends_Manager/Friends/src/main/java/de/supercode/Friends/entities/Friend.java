@@ -1,8 +1,10 @@
 package de.supercode.Friends.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -30,6 +32,10 @@ public class Friend {
     private Boolean isSelfEmployed;
     @Column
     private Boolean hasBeenCustomerBefore;
+
+    @JsonIgnoreProperties("friends")
+    @ManyToOne
+    private Category category;
 
     public long getId() { return Id; }
 
@@ -105,6 +111,14 @@ public class Friend {
 
     public void setHasBeenCustomerBefore(Boolean hasBeenCustomerBefore) {
         this.hasBeenCustomerBefore = hasBeenCustomerBefore;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override

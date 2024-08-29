@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,9 +45,19 @@ public class FriendService {
         return friendRepository.findByBirthDateAfter(birthday);
     }
 
+    // Only friends who have been customers before and earn over xxx
+    public Optional<List<Friend>> findByIncomeGreaterThanAndIsSelfEmployed(long income, Boolean isSelfEmployed) {
+        return friendRepository.findByIncomeGreaterThanAndIsSelfEmployed(income, isSelfEmployed);
+    }
+
+
     // delete
     public void deleteById(long id) {
         friendRepository.deleteById(id);
+    }
+
+    public void update(Friend friend) {
+        friendRepository.save(friend);
     }
 
 }

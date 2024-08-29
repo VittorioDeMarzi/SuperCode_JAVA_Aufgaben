@@ -45,11 +45,13 @@ public class friendController {
         }
     }
 
+    // Only friends with an income over xxx
     @GetMapping("/incomeGreaterThan/{income}")
     public List<Friend> findByIncomeGreaterThan(@PathVariable long income) {
         return friendService.findByIncomeGreaterThan(income);
     }
 
+    // Only friends who are self-employed
     @GetMapping("/friend")
     public List<Friend> findByIsSelfEmployed(@RequestParam Boolean isSelfEmployed) {
         return friendService.findByIsSelfEmployed(isSelfEmployed);
@@ -64,16 +66,26 @@ public class friendController {
         }
     }
 
-    // delete
-    public ResponseEntity<Optional<Friend>> deleteById(@PathVariable long id) {
-        Optional<Friend> friend = friendService.getFriendById(id);
-        if (friend.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(friend);
-        else {
-            friendService.deleteById(id);
-            return ResponseEntity.status(HttpStatus.GONE).body(friend);
+    // Only friends who have been customers before and earn over xxx
+    @GetMapping("/incomeGreaterThan/{income1}/selfEmployed")
+    public ResponseEntity<List<Friend>> findByIncomeGreaterThanAndIsSelfEmployed(@PathVariable long income1, @RequestParam Boolean isSelfEmployed) {
+        try {
+            return new ResponseEntity<>(friendService.findByIncomeGreaterThanAndIsSelfEmployed(income1, isSelfEmployed).get(), HttpStatus.FOUND);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
     }
 
-    // put
-//    public ResponseEntity<Friend>
+    // delete
+    public ResponseEntity<Friend> deleteById(@PathVariable long id) {
+        Optional<Friend> friend = friendService.getFriendById(id);
+        if (friend.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body(friend.get());
+        else {
+            friendService.deleteById(id);
+            return ResponseEntity.status(HttpStatus.GONE).body(friend.get());
+        }
+    }
+
+
+
 }
