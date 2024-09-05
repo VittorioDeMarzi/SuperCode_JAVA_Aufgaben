@@ -1,6 +1,7 @@
 package de.supercode.eCommerce.servicies;
 
-import de.supercode.eCommerce.entities.Product;
+import de.supercode.eCommerce.dtos.ProductDto;
+import de.supercode.eCommerce.entities.product.Product;
 import de.supercode.eCommerce.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,23 @@ public class ProductService {
     }
 
     // save new product
-    public void saveNewProduct(Product product) {
-        productRepository.save(product);
+    public Product saveNewProduct(ProductDto productDto) {
+        Product newProduct = getProductFromDto(productDto);
+        productRepository.save(newProduct);
+        return newProduct;
+    }
+
+    private Product getProductFromDto(ProductDto productDto) {
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setBrand(productDto.getBrand());
+        product.setModell(productDto.getModell());
+        product.setDescription(productDto.getDescription());
+        product.setPrice(productDto.getPrice());
+        product.setStockQuantity(productDto.getStockQuantity());
+        product.setCategory(productDto.getCategory());
+        product.setImageUrl(productDto.getImageUrl());
+        return product;
     }
 
     // find all products

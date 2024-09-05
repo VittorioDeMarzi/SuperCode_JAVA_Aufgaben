@@ -1,14 +1,19 @@
-package de.supercode.eCommerce.entities;
+package de.supercode.eCommerce.entities.orders;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import de.supercode.eCommerce.entities.product.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
+@Setter
+@Getter
 public class OrderProductPK implements Serializable {
 
     @JsonBackReference
@@ -21,24 +26,6 @@ public class OrderProductPK implements Serializable {
 
     public OrderProductPK(Order order, Product product) {
         this.order = order;
-        this.product = product;
-    }
-
-    public OrderProductPK() {}
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
         this.product = product;
     }
 

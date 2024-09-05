@@ -1,6 +1,7 @@
 package de.supercode.eCommerce.controllers;
 
-import de.supercode.eCommerce.entities.Product;
+import de.supercode.eCommerce.dtos.ProductDto;
+import de.supercode.eCommerce.entities.product.Product;
 import de.supercode.eCommerce.errors.ApiError;
 import de.supercode.eCommerce.servicies.ProductService;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,10 @@ public class ProductController {
 
     // save new Product
     @PostMapping
-    public ResponseEntity<?> saveNewProduct(@RequestBody Product product) {
+    public ResponseEntity<?> saveNewProduct(@RequestBody ProductDto productDto) {
         try {
-            productService.saveNewProduct(product);
-            return new ResponseEntity<>(product, HttpStatus.CREATED);
+            Product newProduct = productService.saveNewProduct(productDto);
+            return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
         } catch (Exception ex) {
             return new ResponseEntity<>(new ApiError(HttpStatus.BAD_REQUEST, "Article already in DataBase"), HttpStatus.BAD_REQUEST);
         }

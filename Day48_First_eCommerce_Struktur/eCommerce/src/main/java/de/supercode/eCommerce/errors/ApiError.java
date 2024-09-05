@@ -1,10 +1,12 @@
 package de.supercode.eCommerce.errors;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 public class ApiError {
 
     private HttpStatus status;
+    @Getter
     private String message;
 
     public ApiError(HttpStatus status, String message) {
@@ -16,7 +18,4 @@ public class ApiError {
         return status.value();
     }
 
-    public String getMessage() {
-        return message;
-    }
 }

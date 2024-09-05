@@ -1,4 +1,4 @@
-package de.supercode.eCommerce.entities;
+package de.supercode.eCommerce.entities.product;
 
 import jakarta.persistence.*;
 
