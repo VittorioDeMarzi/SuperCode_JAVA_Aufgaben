@@ -1,5 +1,7 @@
 package de.supercode.eCommerce.entities.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import de.supercode.eCommerce.entities.orders.OrderProduct;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Setter
@@ -33,5 +37,9 @@ public class Product {
     private String imageUrl;
     @CreationTimestamp
     private LocalDate createdDate;
+
+    @OneToMany(mappedBy = "product")
+    @JsonIgnoreProperties
+    private Set<OrderProduct> oderProducts = new HashSet<OrderProduct>();
 
 }

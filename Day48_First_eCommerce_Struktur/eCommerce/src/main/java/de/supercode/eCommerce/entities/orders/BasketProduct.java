@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
 @Setter
@@ -20,7 +21,7 @@ public class BasketProduct {
 
     @ManyToOne
     @JsonBackReference
-    @JoinColumn(name = "baskeId", nullable = false)
+    @JoinColumn(name = "basketId", nullable = false)
     private Basket basket;
 
     @ManyToOne
@@ -30,5 +31,6 @@ public class BasketProduct {
     private int quantity;
 
     private BigDecimal price;
+
 
 }

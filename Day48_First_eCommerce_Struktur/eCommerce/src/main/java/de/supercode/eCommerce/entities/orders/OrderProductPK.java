@@ -1,44 +1,32 @@
 package de.supercode.eCommerce.entities.orders;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import de.supercode.eCommerce.entities.product.Product;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 @Setter
 @Getter
+@EqualsAndHashCode
 public class OrderProductPK implements Serializable {
 
-    @JsonBackReference
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "orderId")
-    private Order order;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "productId")
-    private Product product;
+    private Long orderId;
+    private Long productId;
 
-    public OrderProductPK(Order order, Product product) {
-        this.order = order;
-        this.product = product;
+    public OrderProductPK(Long orderId, Long productId) {
+        this.orderId = orderId;
+        this.productId = productId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrderProductPK that = (OrderProductPK) o;
-        return Objects.equals(order, that.order) && Objects.equals(product, that.product);
+    public OrderProductPK() {
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(order, product);
-    }
+
 }

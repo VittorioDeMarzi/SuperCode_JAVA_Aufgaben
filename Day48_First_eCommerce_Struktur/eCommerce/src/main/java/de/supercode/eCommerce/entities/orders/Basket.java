@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -27,7 +28,20 @@ public class Basket {
     private Customer customer;
 
     @JsonManagedReference
-    @OneToMany(mappedBy =  "basket",  cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy =  "basket",  cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private Set<BasketProduct> basketProduct =  new HashSet<>();
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Basket basket = (Basket) o;
+        return id == basket.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

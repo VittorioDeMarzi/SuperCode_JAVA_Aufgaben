@@ -33,19 +33,18 @@ public class BasketService {
     public void addProductToBasket(addProductToBasketDto dto) {
         Customer customer = customerService.findCustomerById(dto.getCustomerId()).orElseThrow();
         Product product = productService.findById(dto.getProductId()).orElseThrow();
-        Basket basket = customer.getBasket();
+
 
         // check if basket exists for customer, if not create a new one
-        createNewBasketForCustomer(basket, customer);
+        Basket basket = createNewBasketForCustomer(customer);
+//        createNewBasketForCustomer(basket, customer);
         customerService.customerRepository.save(customer);
 
         // check if product is already in basket, if so increase quantity
         Optional<BasketProduct> basketProductOptional = basketProductRepository.findByBasketAndProduct(basket, product);
         updateBasketProduct(basket, basketProductOptional, dto, product);
-
+        // save customer
         customerService.customerRepository.save(customer);
-
-
     }
 
     private void updateBasketProduct(Basket basket, Optional<BasketProduct> basketProductOptional, addProductToBasketDto dto, Product product) {
@@ -66,15 +65,17 @@ public class BasketService {
             basketProduct.setPrice(basketProduct.getPrice().add(price));
         }
         basketProductRepository.save(basketProduct);
-
     }
 
-    private void createNewBasketForCustomer(Basket basket, Customer customer) {
+    private Basket createNewBasketForCustomer(Customer customer) {
+        Basket basket = customer.getBasket();
         if (basket == null) {
             basket = new Basket();
             basket.setCustomer(customer);
             customer.setBasket(basket);
+//            basketRepository.save(basket);
         }
+        return basket;
     }
 
     public void saveNewBasket(Basket basket) {
@@ -87,15 +88,18 @@ public class BasketService {
     }
 
     private Optional<BasketResponseDto> basketToDto(Basket basket) {
-        BasketResponseDto dto = new BasketResponseDto();
-        dto.setCustomerId(basket.getCustomer().getId());
-        dto.setProducts(basketProductToDtoSet(basket.getBasketProduct()));
+        BasketResponseDto basketResponseDto = new BasketResponseDto();
+        basketResponseDto.setCustomerId(basket.getCustomer().getId());
+        basketResponseDto.setProducts(basketProductToDtoSet(basket.getBasketProduct()));
+        BigDecimal totalPrice = getBasketTotalPrice(basket, basketResponseDto);
+        return Optional.of(basketResponseDto);
+    }
 
-        BigDecimal totalPrice = BigDecimal.valueOf(0);
-        totalPrice = basket.getBasketProduct().stream().map(BasketProduct::getPrice)
-                .reduce(totalPrice, BigDecimal::add);
-        dto.setTotalPrice(totalPrice);
-        return Optional.of(dto);
+    private BigDecimal getBasketTotalPrice(Basket basket, BasketResponseDto basketResponseDto) {
+        BigDecimal totalPrice =  basket.getBasketProduct().stream().map(BasketProduct::getPrice)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        basketResponseDto.setTotalPrice(totalPrice);
+        return totalPrice;
     }
 
     private Set<BasketProductResponseDto> basketProductToDtoSet(Set<BasketProduct> basketProduct) {
@@ -108,5 +112,9 @@ public class BasketService {
             dtoSet.add(dto);
         }
         return dtoSet;
+    }
+
+    public void deleteBasket(long id) {
+        basketRepository.deleteById(id);
     }
 }
